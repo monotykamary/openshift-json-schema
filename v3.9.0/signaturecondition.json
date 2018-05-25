@@ -15,11 +15,8 @@
       "description": "Status of the condition, one of True, False, Unknown."
     }, 
     "lastTransitionTime": {
-      "type": [
-        "string", 
-        "null"
-      ], 
-      "format": "date-time"
+      "description": "Last time the condition transit from one status to another.", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
     }, 
     "reason": {
       "type": [
@@ -29,11 +26,8 @@
       "description": "(brief) reason for the condition's last transition."
     }, 
     "lastProbeTime": {
-      "type": [
-        "string", 
-        "null"
-      ], 
-      "format": "date-time"
+      "description": "Last time the condition was checked.", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
     }, 
     "message": {
       "type": [

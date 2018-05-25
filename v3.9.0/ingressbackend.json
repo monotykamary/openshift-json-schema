@@ -15,17 +15,8 @@
       "description": "Specifies the name of the referenced service."
     }, 
     "servicePort": {
-      "oneOf": [
-        {
-          "type": [
-            "string", 
-            "null"
-          ]
-        }, 
-        {
-          "type": "integer"
-        }
-      ]
+      "description": "Specifies the port of the referenced service.", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString"
     }
   }
 }

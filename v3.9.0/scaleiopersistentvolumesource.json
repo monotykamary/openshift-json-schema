@@ -16,24 +16,8 @@
       "description": "Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned."
     }, 
     "secretRef": {
-      "additionalProperties": false, 
-      "description": "SecretReference represents a Secret Reference. It has enough information to retrieve secret in any namespace", 
-      "properties": {
-        "namespace": {
-          "type": [
-            "string", 
-            "null"
-          ], 
-          "description": "Namespace defines the space within which the secret name must be unique."
-        }, 
-        "name": {
-          "type": [
-            "string", 
-            "null"
-          ], 
-          "description": "Name is unique within a namespace to reference a secret resource."
-        }
-      }
+      "description": "SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.SecretReference"
     }, 
     "protectionDomain": {
       "type": [

@@ -27,11 +27,8 @@
       "description": "brief reason for the request state"
     }, 
     "lastUpdateTime": {
-      "type": [
-        "string", 
-        "null"
-      ], 
-      "format": "date-time"
+      "description": "timestamp for the last update to this condition", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
     }
   }
 }

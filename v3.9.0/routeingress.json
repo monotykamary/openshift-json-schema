@@ -26,43 +26,7 @@
     }, 
     "conditions": {
       "items": {
-        "additionalProperties": false, 
-        "required": [
-          "type", 
-          "status"
-        ], 
-        "description": "RouteIngressCondition contains details for the current condition of this route on a particular router.", 
-        "properties": {
-          "status": {
-            "type": "string", 
-            "description": "Status is the status of the condition. Can be True, False, Unknown."
-          }, 
-          "type": {
-            "type": "string", 
-            "description": "Type is the type of the condition. Currently only Ready."
-          }, 
-          "message": {
-            "type": [
-              "string", 
-              "null"
-            ], 
-            "description": "Human readable message indicating details about last transition."
-          }, 
-          "lastTransitionTime": {
-            "type": [
-              "string", 
-              "null"
-            ], 
-            "format": "date-time"
-          }, 
-          "reason": {
-            "type": [
-              "string", 
-              "null"
-            ], 
-            "description": "(brief) reason for the condition's last transition, and is usually a machine and human readable constant"
-          }
-        }
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.route.v1.RouteIngressCondition"
       }, 
       "type": [
         "array", 

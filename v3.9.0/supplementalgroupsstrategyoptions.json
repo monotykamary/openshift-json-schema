@@ -5,20 +5,7 @@
   "properties": {
     "ranges": {
       "items": {
-        "additionalProperties": false, 
-        "description": "IDRange provides a min/max of an allowed range of IDs.", 
-        "properties": {
-          "max": {
-            "type": "integer", 
-            "description": "Max is the end of the range, inclusive.", 
-            "format": "int64"
-          }, 
-          "min": {
-            "type": "integer", 
-            "description": "Min is the start of the range, inclusive.", 
-            "format": "int64"
-          }
-        }
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.security.v1.IDRange"
       }, 
       "type": [
         "array", 

@@ -7,17 +7,8 @@
   "description": "RoutePort defines a port mapping from a router to an endpoint in the service endpoints.", 
   "properties": {
     "targetPort": {
-      "oneOf": [
-        {
-          "type": [
-            "string", 
-            "null"
-          ]
-        }, 
-        {
-          "type": "integer"
-        }
-      ]
+      "description": "The target port on pods selected by the service this route points to. If this is a string, it will be looked up as a named port in the target endpoints port list. Required", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString"
     }
   }
 }

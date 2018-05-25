@@ -25,48 +25,7 @@
     }, 
     "conditions": {
       "items": {
-        "additionalProperties": false, 
-        "required": [
-          "type", 
-          "status"
-        ], 
-        "description": "PersistentVolumeClaimCondition contails details about state of pvc", 
-        "properties": {
-          "status": {
-            "type": "string"
-          }, 
-          "lastTransitionTime": {
-            "type": [
-              "string", 
-              "null"
-            ], 
-            "format": "date-time"
-          }, 
-          "reason": {
-            "type": [
-              "string", 
-              "null"
-            ], 
-            "description": "Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports \"ResizeStarted\" that means the underlying persistent volume is being resized."
-          }, 
-          "lastProbeTime": {
-            "type": [
-              "string", 
-              "null"
-            ], 
-            "format": "date-time"
-          }, 
-          "message": {
-            "type": [
-              "string", 
-              "null"
-            ], 
-            "description": "Human-readable message indicating details about last transition."
-          }, 
-          "type": {
-            "type": "string"
-          }
-        }
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.PersistentVolumeClaimCondition"
       }, 
       "type": [
         "array", 
@@ -78,10 +37,7 @@
     }, 
     "capacity": {
       "additionalProperties": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.api.resource.Quantity"
       }, 
       "type": "object", 
       "description": "Represents the actual resources of the underlying volume."

@@ -14,11 +14,8 @@
       ]
     }, 
     "lastTransitionTime": {
-      "type": [
-        "string", 
-        "null"
-      ], 
-      "format": "date-time"
+      "description": "Last time the condition transitioned from one status to another.", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
     }, 
     "reason": {
       "type": [
@@ -28,11 +25,8 @@
       "description": "Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports \"ResizeStarted\" that means the underlying persistent volume is being resized."
     }, 
     "lastProbeTime": {
-      "type": [
-        "string", 
-        "null"
-      ], 
-      "format": "date-time"
+      "description": "Last time we probed the condition.", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
     }, 
     "message": {
       "type": [

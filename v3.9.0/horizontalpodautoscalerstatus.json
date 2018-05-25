@@ -18,11 +18,8 @@
       "format": "int32"
     }, 
     "lastScaleTime": {
-      "type": [
-        "string", 
-        "null"
-      ], 
-      "format": "date-time"
+      "description": "last time the HorizontalPodAutoscaler scaled the number of pods; used by the autoscaler to control how often the number of pods is changed.", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
     }, 
     "desiredReplicas": {
       "type": "integer", 

@@ -21,10 +21,8 @@
       "description": "Required: resource to select"
     }, 
     "divisor": {
-      "type": [
-        "string", 
-        "null"
-      ]
+      "description": "Specifies the output format of the exposed resources, defaults to \"1\"", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.api.resource.Quantity"
     }
   }
 }

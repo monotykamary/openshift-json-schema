@@ -9,22 +9,7 @@
   "properties": {
     "paths": {
       "items": {
-        "additionalProperties": false, 
-        "required": [
-          "sourcePath", 
-          "destinationDir"
-        ], 
-        "description": "ImageSourcePath describes a path to be copied from a source image and its destination within the build directory.", 
-        "properties": {
-          "sourcePath": {
-            "type": "string", 
-            "description": "sourcePath is the absolute path of the file or directory inside the image to copy to the build directory.  If the source path ends in /. then the content of the directory will be copied, but the directory itself will not be created at the destination."
-          }, 
-          "destinationDir": {
-            "type": "string", 
-            "description": "destinationDir is the relative directory within the build directory where files copied from the image are placed."
-          }
-        }
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.build.v1.ImageSourcePath"
       }, 
       "type": [
         "array", 
@@ -33,72 +18,12 @@
       "description": "paths is a list of source and destination paths to copy from the image."
     }, 
     "from": {
-      "additionalProperties": false, 
-      "description": "ObjectReference contains enough information to let you inspect or modify the referred object.", 
-      "properties": {
-        "kind": {
-          "type": [
-            "string", 
-            "null"
-          ], 
-          "description": "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds"
-        }, 
-        "name": {
-          "type": [
-            "string", 
-            "null"
-          ], 
-          "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names"
-        }, 
-        "namespace": {
-          "type": [
-            "string", 
-            "null"
-          ], 
-          "description": "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/"
-        }, 
-        "apiVersion": {
-          "type": [
-            "string", 
-            "null"
-          ], 
-          "description": "API version of the referent."
-        }, 
-        "fieldPath": {
-          "type": [
-            "string", 
-            "null"
-          ], 
-          "description": "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: \"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered the event) or if no container name is specified \"spec.containers[2]\" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object."
-        }, 
-        "resourceVersion": {
-          "type": [
-            "string", 
-            "null"
-          ], 
-          "description": "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency"
-        }, 
-        "uid": {
-          "type": [
-            "string", 
-            "null"
-          ], 
-          "description": "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids"
-        }
-      }
+      "description": "from is a reference to an ImageStreamTag, ImageStreamImage, or DockerImage to copy source from.", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.ObjectReference"
     }, 
     "pullSecret": {
-      "additionalProperties": false, 
-      "description": "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.", 
-      "properties": {
-        "name": {
-          "type": [
-            "string", 
-            "null"
-          ], 
-          "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names"
-        }
-      }
+      "description": "pullSecret is a reference to a secret to be used to pull the image from a registry If the image is pulled from the OpenShift registry, this field does not need to be set.", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.LocalObjectReference"
     }
   }
 }

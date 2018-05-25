@@ -31,23 +31,7 @@
     }, 
     "options": {
       "items": {
-        "additionalProperties": false, 
-        "description": "PodDNSConfigOption defines DNS resolver options of a pod.", 
-        "properties": {
-          "name": {
-            "type": [
-              "string", 
-              "null"
-            ], 
-            "description": "Required."
-          }, 
-          "value": {
-            "type": [
-              "string", 
-              "null"
-            ]
-          }
-        }
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.PodDNSConfigOption"
       }, 
       "type": [
         "array", 

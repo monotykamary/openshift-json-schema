@@ -8,10 +8,8 @@
   "description": "PodsMetricSource indicates how to scale on a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.", 
   "properties": {
     "targetAverageValue": {
-      "type": [
-        "string", 
-        "null"
-      ]
+      "description": "targetAverageValue is the target value of the average of the metric across all relevant pods (as a quantity)", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.api.resource.Quantity"
     }, 
     "metricName": {
       "type": [

@@ -29,22 +29,7 @@
     }, 
     "httpHeaders": {
       "items": {
-        "additionalProperties": false, 
-        "required": [
-          "name", 
-          "value"
-        ], 
-        "description": "HTTPHeader describes a custom header to be used in HTTP probes", 
-        "properties": {
-          "name": {
-            "type": "string", 
-            "description": "The header field name"
-          }, 
-          "value": {
-            "type": "string", 
-            "description": "The header field value"
-          }
-        }
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.HTTPHeader"
       }, 
       "type": [
         "array", 
@@ -53,17 +38,8 @@
       "description": "Custom headers to set in the request. HTTP allows repeated headers."
     }, 
     "port": {
-      "oneOf": [
-        {
-          "type": [
-            "string", 
-            "null"
-          ]
-        }, 
-        {
-          "type": "integer"
-        }
-      ]
+      "description": "Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString"
     }
   }
 }

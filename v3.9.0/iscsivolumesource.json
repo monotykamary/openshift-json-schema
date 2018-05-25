@@ -29,17 +29,8 @@
       "description": "iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260)."
     }, 
     "secretRef": {
-      "additionalProperties": false, 
-      "description": "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.", 
-      "properties": {
-        "name": {
-          "type": [
-            "string", 
-            "null"
-          ], 
-          "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names"
-        }
-      }
+      "description": "CHAP Secret for iSCSI target and initiator authentication", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.LocalObjectReference"
     }, 
     "fsType": {
       "type": [

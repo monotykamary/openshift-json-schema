@@ -17,39 +17,8 @@
       "description": "ExactValues means the scope has to match a particular set of strings exactly"
     }, 
     "clusterRole": {
-      "additionalProperties": false, 
-      "required": [
-        "roleNames", 
-        "namespaces", 
-        "allowEscalation"
-      ], 
-      "description": "ClusterRoleScopeRestriction describes restrictions on cluster role scopes", 
-      "properties": {
-        "roleNames": {
-          "items": {
-            "type": [
-              "string", 
-              "null"
-            ]
-          }, 
-          "type": "array", 
-          "description": "RoleNames is the list of cluster roles that can referenced.  * means anything"
-        }, 
-        "allowEscalation": {
-          "type": "boolean", 
-          "description": "AllowEscalation indicates whether you can request roles and their escalating resources"
-        }, 
-        "namespaces": {
-          "items": {
-            "type": [
-              "string", 
-              "null"
-            ]
-          }, 
-          "type": "array", 
-          "description": "Namespaces is the list of namespaces that can be referenced.  * means any of them (including *)"
-        }
-      }
+      "description": "ClusterRole describes a set of restrictions for cluster role scoping.", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.oauth.v1.ClusterRoleScopeRestriction"
     }
   }
 }

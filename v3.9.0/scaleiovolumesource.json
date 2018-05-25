@@ -16,17 +16,8 @@
       "description": "Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned."
     }, 
     "secretRef": {
-      "additionalProperties": false, 
-      "description": "LocalObjectReference contains enough information to let you locate the referenced object inside the same namespace.", 
-      "properties": {
-        "name": {
-          "type": [
-            "string", 
-            "null"
-          ], 
-          "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names"
-        }
-      }
+      "description": "SecretRef references to the secret for ScaleIO user and other sensitive information. If this is not provided, Login operation will fail.", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.LocalObjectReference"
     }, 
     "protectionDomain": {
       "type": [
