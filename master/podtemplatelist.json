@@ -15,7 +15,7 @@
   "properties": {
     "items": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.PodTemplate"
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.api.core.v1.PodTemplate"
       }, 
       "type": [
         "array", 
@@ -39,7 +39,7 @@
     }, 
     "metadata": {
       "description": "Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta"
     }
   }
 }

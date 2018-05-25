@@ -12,7 +12,7 @@
     }, 
     {
       "kind": "WatchEvent", 
-      "version": "v1alpha1", 
+      "version": "v1beta1", 
       "group": "admission.k8s.io"
     }, 
     {
@@ -23,11 +23,31 @@
     {
       "kind": "WatchEvent", 
       "version": "v1beta1", 
+      "group": "admissionregistration.k8s.io"
+    }, 
+    {
+      "kind": "WatchEvent", 
+      "version": "v1", 
       "group": "apiregistration.k8s.io"
     }, 
     {
       "kind": "WatchEvent", 
       "version": "v1beta1", 
+      "group": "apiregistration.k8s.io"
+    }, 
+    {
+      "kind": "WatchEvent", 
+      "version": "v1", 
+      "group": "apps"
+    }, 
+    {
+      "kind": "WatchEvent", 
+      "version": "v1beta1", 
+      "group": "apps"
+    }, 
+    {
+      "kind": "WatchEvent", 
+      "version": "v1beta2", 
       "group": "apps"
     }, 
     {
@@ -67,12 +87,17 @@
     }, 
     {
       "kind": "WatchEvent", 
-      "version": "v2alpha1", 
+      "version": "v2beta1", 
       "group": "autoscaling"
     }, 
     {
       "kind": "WatchEvent", 
       "version": "v1", 
+      "group": "batch"
+    }, 
+    {
+      "kind": "WatchEvent", 
+      "version": "v1beta1", 
       "group": "batch"
     }, 
     {
@@ -93,12 +118,12 @@
     {
       "kind": "WatchEvent", 
       "version": "v1beta1", 
-      "group": "extensions"
+      "group": "events.k8s.io"
     }, 
     {
       "kind": "WatchEvent", 
       "version": "v1beta1", 
-      "group": "federation"
+      "group": "extensions"
     }, 
     {
       "kind": "WatchEvent", 
@@ -142,6 +167,11 @@
     }, 
     {
       "kind": "WatchEvent", 
+      "version": "v1", 
+      "group": "rbac.authorization.k8s.io"
+    }, 
+    {
+      "kind": "WatchEvent", 
       "version": "v1alpha1", 
       "group": "rbac.authorization.k8s.io"
     }, 
@@ -157,6 +187,11 @@
     }, 
     {
       "kind": "WatchEvent", 
+      "version": "v1alpha1", 
+      "group": "scheduling.k8s.io"
+    }, 
+    {
+      "kind": "WatchEvent", 
       "version": "v1", 
       "group": "security.openshift.io"
     }, 
@@ -168,6 +203,11 @@
     {
       "kind": "WatchEvent", 
       "version": "v1", 
+      "group": "storage.k8s.io"
+    }, 
+    {
+      "kind": "WatchEvent", 
+      "version": "v1alpha1", 
       "group": "storage.k8s.io"
     }, 
     {

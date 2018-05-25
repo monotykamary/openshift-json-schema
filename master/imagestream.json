@@ -20,7 +20,7 @@
   "properties": {
     "status": {
       "description": "Status describes the current state of this stream", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.image.apis.image.v1.ImageStreamStatus"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.image.v1.ImageStreamStatus"
     }, 
     "kind": {
       "type": [
@@ -31,7 +31,7 @@
     }, 
     "spec": {
       "description": "Spec describes the desired state of this stream", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.image.apis.image.v1.ImageStreamSpec"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.image.v1.ImageStreamSpec"
     }, 
     "apiVersion": {
       "type": [
@@ -42,7 +42,7 @@
     }, 
     "metadata": {
       "description": "Standard object's metadata.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
     }
   }
 }

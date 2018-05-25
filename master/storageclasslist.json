@@ -6,7 +6,7 @@
   "x-kubernetes-group-version-kind": [
     {
       "kind": "StorageClassList", 
-      "version": "v1beta1", 
+      "version": "v1", 
       "group": "storage.k8s.io"
     }
   ], 
@@ -15,7 +15,7 @@
   "properties": {
     "items": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.kubernetes.pkg.apis.storage.v1beta1.StorageClass"
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.api.storage.v1.StorageClass"
       }, 
       "type": [
         "array", 
@@ -39,7 +39,7 @@
     }, 
     "metadata": {
       "description": "Standard list metadata More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta"
     }
   }
 }

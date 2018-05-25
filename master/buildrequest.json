@@ -20,7 +20,7 @@
   "properties": {
     "binary": {
       "description": "binary indicates a request to build from a binary provided to the builder", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.build.apis.build.v1.BinaryBuildSource"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.build.v1.BinaryBuildSource"
     }, 
     "kind": {
       "type": [
@@ -31,15 +31,15 @@
     }, 
     "from": {
       "description": "from is the reference to the ImageStreamTag that triggered the build.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.ObjectReference"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.api.core.v1.ObjectReference"
     }, 
     "revision": {
       "description": "revision is the information from the source for a specific repo snapshot.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.build.apis.build.v1.SourceRevision"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.build.v1.SourceRevision"
     }, 
     "sourceStrategyOptions": {
       "description": "SourceStrategyOptions contains additional source-strategy specific options for the build", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.build.apis.build.v1.SourceStrategyOptions"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.build.v1.SourceStrategyOptions"
     }, 
     "apiVersion": {
       "type": [
@@ -50,11 +50,11 @@
     }, 
     "triggeredByImage": {
       "description": "triggeredByImage is the Image that triggered this build.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.ObjectReference"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.api.core.v1.ObjectReference"
     }, 
     "env": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.EnvVar"
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.api.core.v1.EnvVar"
       }, 
       "type": [
         "array", 
@@ -64,7 +64,7 @@
     }, 
     "triggeredBy": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.build.apis.build.v1.BuildTriggerCause"
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.build.v1.BuildTriggerCause"
       }, 
       "type": [
         "array", 
@@ -79,11 +79,11 @@
     }, 
     "dockerStrategyOptions": {
       "description": "DockerStrategyOptions contains additional docker-strategy specific options for the build", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.build.apis.build.v1.DockerStrategyOptions"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.build.v1.DockerStrategyOptions"
     }, 
     "metadata": {
       "description": "metadata for BuildRequest.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
     }
   }
 }

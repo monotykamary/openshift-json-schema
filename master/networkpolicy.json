@@ -2,13 +2,13 @@
   "x-kubernetes-group-version-kind": [
     {
       "kind": "NetworkPolicy", 
-      "version": "v1", 
-      "group": "networking.k8s.io"
+      "version": "v1beta1", 
+      "group": "extensions"
     }
   ], 
   "$schema": "http://json-schema.org/schema#", 
   "type": "object", 
-  "description": "NetworkPolicy describes what network traffic is allowed for a set of Pods", 
+  "description": "DEPRECATED 1.9 - This group version of NetworkPolicy is deprecated by networking/v1/NetworkPolicy. NetworkPolicy describes what network traffic is allowed for a set of Pods", 
   "properties": {
     "kind": {
       "type": [
@@ -19,7 +19,7 @@
     }, 
     "spec": {
       "description": "Specification of the desired behavior for this NetworkPolicy.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.kubernetes.pkg.apis.networking.v1.NetworkPolicySpec"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.api.extensions.v1beta1.NetworkPolicySpec"
     }, 
     "apiVersion": {
       "type": [
@@ -30,7 +30,7 @@
     }, 
     "metadata": {
       "description": "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
     }
   }
 }

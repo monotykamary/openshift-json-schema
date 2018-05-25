@@ -1,20 +1,18 @@
 {
   "$schema": "http://json-schema.org/schema#", 
   "required": [
-    "name", 
-    "annotations", 
-    "generation"
+    "name"
   ], 
   "type": "object", 
   "description": "TagReference specifies optional annotations for images using this tag and an optional reference to an ImageStreamTag, ImageStreamImage, or DockerImage this tag should track.", 
   "properties": {
     "importPolicy": {
       "description": "ImportPolicy is information that controls how images may be imported by the server.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.image.apis.image.v1.TagImportPolicy"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.image.v1.TagImportPolicy"
     }, 
     "from": {
-      "description": "Optional; if specified, a reference to another image that this tag should point to. Valid values are ImageStreamTag, ImageStreamImage, and DockerImage.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.ObjectReference"
+      "description": "Optional; if specified, a reference to another image that this tag should point to. Valid values are ImageStreamTag, ImageStreamImage, and DockerImage.  ImageStreamTag references can only reference a tag within this same ImageStream.", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.api.core.v1.ObjectReference"
     }, 
     "name": {
       "type": [
@@ -34,7 +32,7 @@
     }, 
     "referencePolicy": {
       "description": "ReferencePolicy defines how other components should consume the image.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.image.apis.image.v1.TagReferencePolicy"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.image.v1.TagReferencePolicy"
     }, 
     "annotations": {
       "additionalProperties": {

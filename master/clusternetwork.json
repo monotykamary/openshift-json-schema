@@ -1,9 +1,8 @@
 {
   "description": "ClusterNetwork describes the cluster network. There is normally only one object of this type, named \"default\", which is created by the SDN network plugin based on the master configuration when the cluster is brought up for the first time.", 
   "required": [
-    "network", 
-    "hostsubnetlength", 
-    "serviceNetwork"
+    "serviceNetwork", 
+    "clusterNetworks"
   ], 
   "x-kubernetes-group-version-kind": [
     {
@@ -60,9 +59,19 @@
       ], 
       "description": "PluginName is the name of the network plugin being used"
     }, 
+    "clusterNetworks": {
+      "items": {
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.network.v1.ClusterNetworkEntry"
+      }, 
+      "type": [
+        "array", 
+        "null"
+      ], 
+      "description": "ClusterNetworks is a list of ClusterNetwork objects that defines the global overlay network's L3 space by specifying a set of CIDR and netmasks that the SDN can allocate addressed from."
+    }, 
     "metadata": {
       "description": "Standard object's metadata.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
     }
   }
 }

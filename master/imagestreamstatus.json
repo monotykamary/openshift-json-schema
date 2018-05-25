@@ -22,13 +22,15 @@
     }, 
     "tags": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.image.apis.image.v1.NamedTagEventList"
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.image.v1.NamedTagEventList"
       }, 
       "type": [
         "array", 
         "null"
       ], 
-      "description": "Tags are a historical record of images associated with each tag. The first entry in the TagEvent array is the currently tagged image."
+      "description": "Tags are a historical record of images associated with each tag. The first entry in the TagEvent array is the currently tagged image.", 
+      "x-kubernetes-patch-strategy": "merge", 
+      "x-kubernetes-patch-merge-key": "tag"
     }
   }
 }

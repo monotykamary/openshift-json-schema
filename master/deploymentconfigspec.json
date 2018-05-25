@@ -1,17 +1,11 @@
 {
   "$schema": "http://json-schema.org/schema#", 
-  "required": [
-    "strategy", 
-    "triggers", 
-    "replicas", 
-    "test"
-  ], 
   "type": "object", 
   "description": "DeploymentConfigSpec represents the desired state of the deployment.", 
   "properties": {
     "triggers": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.apps.apis.apps.v1.DeploymentTriggerPolicy"
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.apps.v1.DeploymentTriggerPolicy"
       }, 
       "type": [
         "array", 
@@ -26,7 +20,7 @@
     }, 
     "strategy": {
       "description": "Strategy describes how a deployment is executed.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.apps.apis.apps.v1.DeploymentStrategy"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.apps.v1.DeploymentStrategy"
     }, 
     "paused": {
       "type": "boolean", 
@@ -34,7 +28,7 @@
     }, 
     "template": {
       "description": "Template is the object that describes the pod that will be created if insufficient replicas are detected.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.PodTemplateSpec"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.api.core.v1.PodTemplateSpec"
     }, 
     "test": {
       "type": "boolean", 

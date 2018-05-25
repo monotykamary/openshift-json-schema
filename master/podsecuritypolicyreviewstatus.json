@@ -8,7 +8,7 @@
   "properties": {
     "allowedServiceAccounts": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.security.apis.security.v1.ServiceAccountPodSecurityPolicyReviewStatus"
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.security.v1.ServiceAccountPodSecurityPolicyReviewStatus"
       }, 
       "type": [
         "array", 

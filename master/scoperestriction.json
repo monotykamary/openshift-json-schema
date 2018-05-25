@@ -18,7 +18,7 @@
     }, 
     "clusterRole": {
       "description": "ClusterRole describes a set of restrictions for cluster role scoping.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.oauth.apis.oauth.v1.ClusterRoleScopeRestriction"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.oauth.v1.ClusterRoleScopeRestriction"
     }
   }
 }

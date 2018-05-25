@@ -40,6 +40,37 @@
             ], 
             "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds"
           }, 
+          "series": {
+            "description": "EventSeries contain information on series of events, i.e. thing that was/is happening continuously for some time.", 
+            "properties": {
+              "count": {
+                "type": "integer", 
+                "description": "Number of occurrences in this series up to the last heartbeat time", 
+                "format": "int32"
+              }, 
+              "state": {
+                "type": [
+                  "string", 
+                  "null"
+                ], 
+                "description": "State of this Series: Ongoing or Finished"
+              }, 
+              "lastObservedTime": {
+                "type": [
+                  "string", 
+                  "null"
+                ], 
+                "format": "date-time"
+              }
+            }
+          }, 
+          "reportingInstance": {
+            "type": [
+              "string", 
+              "null"
+            ], 
+            "description": "ID of the controller instance, e.g. `kubelet-xyzf`."
+          }, 
           "firstTimestamp": {
             "type": [
               "string", 
@@ -54,12 +85,59 @@
             ], 
             "format": "date-time"
           }, 
-          "apiVersion": {
-            "type": [
-              "string", 
-              "null"
-            ], 
-            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources"
+          "related": {
+            "description": "ObjectReference contains enough information to let you inspect or modify the referred object.", 
+            "properties": {
+              "kind": {
+                "type": [
+                  "string", 
+                  "null"
+                ], 
+                "description": "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds"
+              }, 
+              "name": {
+                "type": [
+                  "string", 
+                  "null"
+                ], 
+                "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names"
+              }, 
+              "namespace": {
+                "type": [
+                  "string", 
+                  "null"
+                ], 
+                "description": "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/"
+              }, 
+              "apiVersion": {
+                "type": [
+                  "string", 
+                  "null"
+                ], 
+                "description": "API version of the referent."
+              }, 
+              "fieldPath": {
+                "type": [
+                  "string", 
+                  "null"
+                ], 
+                "description": "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: \"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered the event) or if no container name is specified \"spec.containers[2]\" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object."
+              }, 
+              "resourceVersion": {
+                "type": [
+                  "string", 
+                  "null"
+                ], 
+                "description": "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency"
+              }, 
+              "uid": {
+                "type": [
+                  "string", 
+                  "null"
+                ], 
+                "description": "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids"
+              }
+            }
           }, 
           "source": {
             "description": "EventSource contains information for an event.", 
@@ -86,6 +164,13 @@
               "null"
             ], 
             "description": "This should be a short, machine understandable string that gives the reason for the transition into the object's current status."
+          }, 
+          "reportingComponent": {
+            "type": [
+              "string", 
+              "null"
+            ], 
+            "description": "Name of the controller that emitted this Event, e.g. `kubernetes.io/kubelet`."
           }, 
           "involvedObject": {
             "description": "ObjectReference contains enough information to let you inspect or modify the referred object.", 
@@ -141,6 +226,20 @@
               }
             }
           }, 
+          "eventTime": {
+            "type": [
+              "string", 
+              "null"
+            ], 
+            "format": "date-time"
+          }, 
+          "apiVersion": {
+            "type": [
+              "string", 
+              "null"
+            ], 
+            "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources"
+          }, 
           "message": {
             "type": [
               "string", 
@@ -154,6 +253,13 @@
               "null"
             ], 
             "description": "Type of this event (Normal, Warning), new types could be added in the future"
+          }, 
+          "action": {
+            "type": [
+              "string", 
+              "null"
+            ], 
+            "description": "What action was taken/failed regarding to the Regarding object."
           }, 
           "metadata": {
             "description": "ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.", 
@@ -339,7 +445,7 @@
                           }, 
                           "retryAfterSeconds": {
                             "type": "integer", 
-                            "description": "If specified, the time in seconds before the operation should be retried.", 
+                            "description": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.", 
                             "format": "int32"
                           }, 
                           "causes": {
@@ -394,12 +500,19 @@
                       "metadata": {
                         "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.", 
                         "properties": {
+                          "continue": {
+                            "type": [
+                              "string", 
+                              "null"
+                            ], 
+                            "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response."
+                          }, 
                           "selfLink": {
                             "type": [
                               "string", 
                               "null"
                             ], 
-                            "description": "SelfLink is a URL representing this object. Populated by the system. Read-only."
+                            "description": "selfLink is a URL representing this object. Populated by the system. Read-only."
                           }, 
                           "resourceVersion": {
                             "type": [
@@ -425,8 +538,10 @@
                         }
                       }
                     }, 
+                    "x-kubernetes-patch-merge-key": "name", 
                     "type": "array", 
-                    "description": "Pending is a list of initializers that must execute in order before this object is visible. When the last pending initializer is removed, and no failing result is set, the initializers struct will be set to nil and the object is considered as initialized and visible to all clients."
+                    "description": "Pending is a list of initializers that must execute in order before this object is visible. When the last pending initializer is removed, and no failing result is set, the initializers struct will be set to nil and the object is considered as initialized and visible to all clients.", 
+                    "x-kubernetes-patch-strategy": "merge"
                   }
                 }
               }, 
@@ -502,12 +617,19 @@
     "metadata": {
       "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.", 
       "properties": {
+        "continue": {
+          "type": [
+            "string", 
+            "null"
+          ], 
+          "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response."
+        }, 
         "selfLink": {
           "type": [
             "string", 
             "null"
           ], 
-          "description": "SelfLink is a URL representing this object. Populated by the system. Read-only."
+          "description": "selfLink is a URL representing this object. Populated by the system. Read-only."
         }, 
         "resourceVersion": {
           "type": [

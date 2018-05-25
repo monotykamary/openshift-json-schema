@@ -20,7 +20,7 @@
   "properties": {
     "status": {
       "description": "status represents the current information/status for the PodSecurityPolicySubjectReview.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.security.apis.security.v1.PodSecurityPolicySubjectReviewStatus"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.security.v1.PodSecurityPolicySubjectReviewStatus"
     }, 
     "kind": {
       "type": [
@@ -31,7 +31,7 @@
     }, 
     "spec": {
       "description": "spec defines specification for the PodSecurityPolicySubjectReview.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.security.apis.security.v1.PodSecurityPolicySubjectReviewSpec"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.security.v1.PodSecurityPolicySubjectReviewSpec"
     }, 
     "apiVersion": {
       "type": [

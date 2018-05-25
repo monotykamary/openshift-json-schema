@@ -17,7 +17,7 @@
   "properties": {
     "status": {
       "description": "Status describes the current status of a Namespace", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.project.apis.project.v1.ProjectStatus"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.project.v1.ProjectStatus"
     }, 
     "kind": {
       "type": [
@@ -28,7 +28,7 @@
     }, 
     "spec": {
       "description": "Spec defines the behavior of the Namespace.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.project.apis.project.v1.ProjectSpec"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.project.v1.ProjectSpec"
     }, 
     "apiVersion": {
       "type": [
@@ -39,7 +39,7 @@
     }, 
     "metadata": {
       "description": "Standard object's metadata.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
     }
   }
 }

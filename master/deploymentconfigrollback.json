@@ -52,7 +52,7 @@
     }, 
     "spec": {
       "description": "Spec defines the options to rollback generation.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.apps.apis.apps.v1.DeploymentConfigRollbackSpec"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.apps.v1.DeploymentConfigRollbackSpec"
     }
   }
 }

@@ -29,7 +29,20 @@
                   "string", 
                   "null"
                 ], 
-                "description": "secret used to validate requests."
+                "description": "secret used to validate requests. Deprecated: use SecretReference instead."
+              }, 
+              "secretReference": {
+                "additionalProperties": false, 
+                "required": [
+                  "name"
+                ], 
+                "description": "SecretLocalReference contains information that points to the local secret being used", 
+                "properties": {
+                  "name": {
+                    "type": "string", 
+                    "description": "Name is the name of the resource in the same namespace being referenced"
+                  }
+                }
               }
             }
           }, 
@@ -46,7 +59,20 @@
                   "string", 
                   "null"
                 ], 
-                "description": "secret used to validate requests."
+                "description": "secret used to validate requests. Deprecated: use SecretReference instead."
+              }, 
+              "secretReference": {
+                "additionalProperties": false, 
+                "required": [
+                  "name"
+                ], 
+                "description": "SecretLocalReference contains information that points to the local secret being used", 
+                "properties": {
+                  "name": {
+                    "type": "string", 
+                    "description": "Name is the name of the resource in the same namespace being referenced"
+                  }
+                }
               }
             }
           }, 
@@ -63,7 +89,20 @@
                   "string", 
                   "null"
                 ], 
-                "description": "secret used to validate requests."
+                "description": "secret used to validate requests. Deprecated: use SecretReference instead."
+              }, 
+              "secretReference": {
+                "additionalProperties": false, 
+                "required": [
+                  "name"
+                ], 
+                "description": "SecretLocalReference contains information that points to the local secret being used", 
+                "properties": {
+                  "name": {
+                    "type": "string", 
+                    "description": "Name is the name of the resource in the same namespace being referenced"
+                  }
+                }
               }
             }
           }, 
@@ -80,7 +119,20 @@
                   "string", 
                   "null"
                 ], 
-                "description": "secret used to validate requests."
+                "description": "secret used to validate requests. Deprecated: use SecretReference instead."
+              }, 
+              "secretReference": {
+                "additionalProperties": false, 
+                "required": [
+                  "name"
+                ], 
+                "description": "SecretLocalReference contains information that points to the local secret being used", 
+                "properties": {
+                  "name": {
+                    "type": "string", 
+                    "description": "Name is the name of the resource in the same namespace being referenced"
+                  }
+                }
               }
             }
           }, 
@@ -311,10 +363,9 @@
           "items": {
             "additionalProperties": false, 
             "required": [
-              "from", 
-              "paths"
+              "from"
             ], 
-            "description": "ImageSource is used to describe build source that will be extracted from an image. A reference of type ImageStreamTag, ImageStreamImage or DockerImage may be used. A pull secret can be specified to pull the image from an external registry or override the default service account secret if pulling from the internal registry. A list of paths to copy from the image and their respective destination within the build directory must be specified in the paths array.", 
+            "description": "ImageSource is used to describe build source that will be extracted from an image or used during a multi stage build. A reference of type ImageStreamTag, ImageStreamImage or DockerImage may be used. A pull secret can be specified to pull the image from an external registry or override the default service account secret if pulling from the internal registry. Image sources can either be used to extract content from an image and place it into the build context along with the repository source, or used directly during a multi-stage Docker build to allow content to be copied without overwriting the contents of the repository source (see the 'paths' and 'as' fields).", 
             "properties": {
               "paths": {
                 "items": {
@@ -335,8 +386,24 @@
                     }
                   }
                 }, 
-                "type": "array", 
-                "description": "paths is a list of source and destination paths to copy from the image."
+                "type": [
+                  "array", 
+                  "null"
+                ], 
+                "description": "paths is a list of source and destination paths to copy from the image. This content will be copied into the build context prior to starting the build. If no paths are set, the build context will not be altered."
+              }, 
+              "as": {
+                "items": {
+                  "type": [
+                    "string", 
+                    "null"
+                  ]
+                }, 
+                "type": [
+                  "array", 
+                  "null"
+                ], 
+                "description": "A list of image names that this source will be used in place of during a multi-stage Docker image build. For instance, a Dockerfile that uses \"COPY --from=nginx:latest\" will first check for an image source that has \"nginx:latest\" in this field before attempting to pull directly. If the Dockerfile does not reference an image source it is ignored. This field and paths may both be set, in which case the contents will be used twice."
               }, 
               "from": {
                 "additionalProperties": false, 
@@ -582,7 +649,7 @@
       "properties": {
         "jenkinsPipelineStrategy": {
           "additionalProperties": false, 
-          "description": "JenkinsPipelineBuildStrategy holds parameters specific to a Jenkins Pipeline build. This strategy is in tech preview.", 
+          "description": "JenkinsPipelineBuildStrategy holds parameters specific to a Jenkins Pipeline build.", 
           "properties": {
             "jenkinsfilePath": {
               "type": [
@@ -741,13 +808,6 @@
           ], 
           "description": "SourceBuildStrategy defines input parameters specific to an Source build.", 
           "properties": {
-            "scripts": {
-              "type": [
-                "string", 
-                "null"
-              ], 
-              "description": "scripts is the location of Source scripts"
-            }, 
             "from": {
               "additionalProperties": false, 
               "description": "ObjectReference contains enough information to let you inspect or modify the referred object.", 
@@ -815,10 +875,6 @@
                   "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names"
                 }
               }
-            }, 
-            "forcePull": {
-              "type": "boolean", 
-              "description": "forcePull describes if the builder should pull the images from registry prior to building."
             }, 
             "incremental": {
               "type": "boolean", 
@@ -958,85 +1014,16 @@
               ], 
               "description": "env contains additional environment variables you want to pass into a builder container."
             }, 
-            "runtimeImage": {
-              "additionalProperties": false, 
-              "description": "ObjectReference contains enough information to let you inspect or modify the referred object.", 
-              "properties": {
-                "kind": {
-                  "type": [
-                    "string", 
-                    "null"
-                  ], 
-                  "description": "Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds"
-                }, 
-                "name": {
-                  "type": [
-                    "string", 
-                    "null"
-                  ], 
-                  "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names"
-                }, 
-                "namespace": {
-                  "type": [
-                    "string", 
-                    "null"
-                  ], 
-                  "description": "Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/"
-                }, 
-                "apiVersion": {
-                  "type": [
-                    "string", 
-                    "null"
-                  ], 
-                  "description": "API version of the referent."
-                }, 
-                "fieldPath": {
-                  "type": [
-                    "string", 
-                    "null"
-                  ], 
-                  "description": "If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: \"spec.containers{name}\" (where \"name\" refers to the name of the container that triggered the event) or if no container name is specified \"spec.containers[2]\" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object."
-                }, 
-                "resourceVersion": {
-                  "type": [
-                    "string", 
-                    "null"
-                  ], 
-                  "description": "Specific resourceVersion to which this reference is made, if any. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency"
-                }, 
-                "uid": {
-                  "type": [
-                    "string", 
-                    "null"
-                  ], 
-                  "description": "UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids"
-                }
-              }
-            }, 
-            "runtimeArtifacts": {
-              "items": {
-                "additionalProperties": false, 
-                "required": [
-                  "sourcePath", 
-                  "destinationDir"
-                ], 
-                "description": "ImageSourcePath describes a path to be copied from a source image and its destination within the build directory.", 
-                "properties": {
-                  "sourcePath": {
-                    "type": "string", 
-                    "description": "sourcePath is the absolute path of the file or directory inside the image to copy to the build directory.  If the source path ends in /. then the content of the directory will be copied, but the directory itself will not be created at the destination."
-                  }, 
-                  "destinationDir": {
-                    "type": "string", 
-                    "description": "destinationDir is the relative directory within the build directory where files copied from the image are placed."
-                  }
-                }
-              }, 
+            "scripts": {
               "type": [
-                "array", 
+                "string", 
                 "null"
               ], 
-              "description": "runtimeArtifacts specifies a list of source/destination pairs that will be copied from the builder to the runtime image. sourcePath can be a file or directory. destinationDir must be a directory. destinationDir can also be empty or equal to \".\", in this case it just refers to the root of WORKDIR. Deprecated: This feature will be removed in a future release. Use ImageSource to copy binary artifacts created from one build into a separate runtime image."
+              "description": "scripts is the location of Source scripts"
+            }, 
+            "forcePull": {
+              "type": "boolean", 
+              "description": "forcePull describes if the builder should pull the images from registry prior to building."
             }
           }
         }, 

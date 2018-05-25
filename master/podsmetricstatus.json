@@ -9,10 +9,13 @@
   "properties": {
     "currentAverageValue": {
       "description": "currentAverageValue is the current value of the average of the metric across all relevant pods (as a quantity)", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/resource.Quantity"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.api.resource.Quantity"
     }, 
     "metricName": {
-      "type": "string", 
+      "type": [
+        "string", 
+        "null"
+      ], 
       "description": "metricName is the name of the metric in question"
     }
   }

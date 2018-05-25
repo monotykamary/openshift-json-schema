@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema#", 
   "required": [
+    "selector", 
     "template", 
     "serviceName"
   ], 
@@ -43,6 +44,59 @@
                 ], 
                 "description": "AccessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1"
               }, 
+              "conditions": {
+                "items": {
+                  "additionalProperties": false, 
+                  "required": [
+                    "type", 
+                    "status"
+                  ], 
+                  "description": "PersistentVolumeClaimCondition contails details about state of pvc", 
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    }, 
+                    "lastTransitionTime": {
+                      "type": [
+                        "string", 
+                        "null"
+                      ], 
+                      "format": "date-time"
+                    }, 
+                    "reason": {
+                      "type": [
+                        "string", 
+                        "null"
+                      ], 
+                      "description": "Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports \"ResizeStarted\" that means the underlying persistent volume is being resized."
+                    }, 
+                    "lastProbeTime": {
+                      "type": [
+                        "string", 
+                        "null"
+                      ], 
+                      "format": "date-time"
+                    }, 
+                    "message": {
+                      "type": [
+                        "string", 
+                        "null"
+                      ], 
+                      "description": "Human-readable message indicating details about last transition."
+                    }, 
+                    "type": {
+                      "type": "string"
+                    }
+                  }
+                }, 
+                "type": [
+                  "array", 
+                  "null"
+                ], 
+                "description": "Current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.", 
+                "x-kubernetes-patch-strategy": "merge", 
+                "x-kubernetes-patch-merge-key": "type"
+              }, 
               "capacity": {
                 "additionalProperties": {
                   "oneOf": [
@@ -79,6 +133,69 @@
                   "null"
                 ], 
                 "description": "Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1"
+              }, 
+              "volumeMode": {
+                "type": [
+                  "string", 
+                  "null"
+                ], 
+                "description": "volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec. This is an alpha feature and may change in the future."
+              }, 
+              "selector": {
+                "additionalProperties": false, 
+                "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.", 
+                "properties": {
+                  "matchLabels": {
+                    "additionalProperties": {
+                      "type": [
+                        "string", 
+                        "null"
+                      ]
+                    }, 
+                    "type": "object", 
+                    "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed."
+                  }, 
+                  "matchExpressions": {
+                    "items": {
+                      "additionalProperties": false, 
+                      "required": [
+                        "key", 
+                        "operator"
+                      ], 
+                      "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.", 
+                      "properties": {
+                        "operator": {
+                          "type": "string", 
+                          "description": "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist."
+                        }, 
+                        "values": {
+                          "items": {
+                            "type": [
+                              "string", 
+                              "null"
+                            ]
+                          }, 
+                          "type": [
+                            "array", 
+                            "null"
+                          ], 
+                          "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch."
+                        }, 
+                        "key": {
+                          "x-kubernetes-patch-merge-key": "key", 
+                          "type": "string", 
+                          "description": "key is the label key that the selector applies to.", 
+                          "x-kubernetes-patch-strategy": "merge"
+                        }
+                      }
+                    }, 
+                    "type": [
+                      "array", 
+                      "null"
+                    ], 
+                    "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed."
+                  }
+                }
               }, 
               "accessModes": {
                 "items": {
@@ -137,62 +254,6 @@
                     }, 
                     "type": "object", 
                     "description": "Limits describes the maximum amount of compute resources allowed. More info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/"
-                  }
-                }
-              }, 
-              "selector": {
-                "additionalProperties": false, 
-                "description": "A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.", 
-                "properties": {
-                  "matchLabels": {
-                    "additionalProperties": {
-                      "type": [
-                        "string", 
-                        "null"
-                      ]
-                    }, 
-                    "type": "object", 
-                    "description": "matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is \"key\", the operator is \"In\", and the values array contains only \"value\". The requirements are ANDed."
-                  }, 
-                  "matchExpressions": {
-                    "items": {
-                      "additionalProperties": false, 
-                      "required": [
-                        "key", 
-                        "operator"
-                      ], 
-                      "description": "A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.", 
-                      "properties": {
-                        "operator": {
-                          "type": "string", 
-                          "description": "operator represents a key's relationship to a set of values. Valid operators ard In, NotIn, Exists and DoesNotExist."
-                        }, 
-                        "values": {
-                          "items": {
-                            "type": [
-                              "string", 
-                              "null"
-                            ]
-                          }, 
-                          "type": [
-                            "array", 
-                            "null"
-                          ], 
-                          "description": "values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch."
-                        }, 
-                        "key": {
-                          "x-kubernetes-patch-merge-key": "key", 
-                          "type": "string", 
-                          "description": "key is the label key that the selector applies to.", 
-                          "x-kubernetes-patch-strategy": "merge"
-                        }
-                      }
-                    }, 
-                    "type": [
-                      "array", 
-                      "null"
-                    ], 
-                    "description": "matchExpressions is a list of label selector requirements. The requirements are ANDed."
                   }
                 }
               }
@@ -356,7 +417,7 @@
                           }, 
                           "retryAfterSeconds": {
                             "type": "integer", 
-                            "description": "If specified, the time in seconds before the operation should be retried.", 
+                            "description": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.", 
                             "format": "int32"
                           }, 
                           "causes": {
@@ -413,12 +474,19 @@
                         "additionalProperties": false, 
                         "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.", 
                         "properties": {
+                          "continue": {
+                            "type": [
+                              "string", 
+                              "null"
+                            ], 
+                            "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response."
+                          }, 
                           "selfLink": {
                             "type": [
                               "string", 
                               "null"
                             ], 
-                            "description": "SelfLink is a URL representing this object. Populated by the system. Read-only."
+                            "description": "selfLink is a URL representing this object. Populated by the system. Read-only."
                           }, 
                           "resourceVersion": {
                             "type": [
@@ -446,7 +514,9 @@
                       }
                     }, 
                     "type": "array", 
-                    "description": "Pending is a list of initializers that must execute in order before this object is visible. When the last pending initializer is removed, and no failing result is set, the initializers struct will be set to nil and the object is considered as initialized and visible to all clients."
+                    "description": "Pending is a list of initializers that must execute in order before this object is visible. When the last pending initializer is removed, and no failing result is set, the initializers struct will be set to nil and the object is considered as initialized and visible to all clients.", 
+                    "x-kubernetes-patch-strategy": "merge", 
+                    "x-kubernetes-patch-merge-key": "name"
                   }
                 }
               }, 
@@ -580,7 +650,7 @@
             "properties": {
               "operator": {
                 "type": "string", 
-                "description": "operator represents a key's relationship to a set of values. Valid operators ard In, NotIn, Exists and DoesNotExist."
+                "description": "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist."
               }, 
               "values": {
                 "items": {
@@ -634,7 +704,7 @@
                 "string", 
                 "null"
               ], 
-              "description": "Set DNS policy for containers within the pod. One of 'ClusterFirstWithHostNet', 'ClusterFirst' or 'Default'. Defaults to \"ClusterFirst\". To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'."
+              "description": "Set DNS policy for the pod. Defaults to \"ClusterFirst\". Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'."
             }, 
             "hostNetwork": {
               "type": "boolean", 
@@ -651,18 +721,43 @@
               "type": "boolean", 
               "description": "AutomountServiceAccountToken indicates whether a service account token should be automatically mounted."
             }, 
+            "shareProcessNamespace": {
+              "type": "boolean", 
+              "description": "Share a single process namespace between all of the containers in a pod. When this is set containers will be able to view and signal processes from other containers in the same pod, and the first process in each container will not be assigned PID 1. HostPID and ShareProcessNamespace cannot both be set. Optional: Default to false. This field is alpha-level and is honored only by servers that enable the PodShareProcessNamespace feature."
+            }, 
             "securityContext": {
               "additionalProperties": false, 
               "description": "PodSecurityContext holds pod-level security attributes and common container settings. Some fields are also present in container.securityContext.  Field values of container.securityContext take precedence over field values of PodSecurityContext.", 
               "properties": {
-                "runAsNonRoot": {
-                  "type": "boolean", 
-                  "description": "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence."
+                "runAsGroup": {
+                  "type": "integer", 
+                  "description": "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.", 
+                  "format": "int64"
+                }, 
+                "runAsUser": {
+                  "type": "integer", 
+                  "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.", 
+                  "format": "int64"
+                }, 
+                "supplementalGroups": {
+                  "items": {
+                    "type": "integer", 
+                    "format": "int64"
+                  }, 
+                  "type": [
+                    "array", 
+                    "null"
+                  ], 
+                  "description": "A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container."
                 }, 
                 "fsGroup": {
                   "type": "integer", 
                   "description": "A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:\n\n1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----\n\nIf unset, the Kubelet will not modify the ownership and permissions of any volume.", 
                   "format": "int64"
+                }, 
+                "runAsNonRoot": {
+                  "type": "boolean", 
+                  "description": "Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence."
                 }, 
                 "seLinuxOptions": {
                   "additionalProperties": false, 
@@ -697,22 +792,6 @@
                       "description": "Level is SELinux level label that applies to the container."
                     }
                   }
-                }, 
-                "supplementalGroups": {
-                  "items": {
-                    "type": "integer", 
-                    "format": "int64"
-                  }, 
-                  "type": [
-                    "array", 
-                    "null"
-                  ], 
-                  "description": "A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container."
-                }, 
-                "runAsUser": {
-                  "type": "integer", 
-                  "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.", 
-                  "format": "int64"
                 }
               }
             }, 
@@ -782,6 +861,11 @@
               "type": "object", 
               "description": "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/"
             }, 
+            "priority": {
+              "type": "integer", 
+              "description": "The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority.", 
+              "format": "int32"
+            }, 
             "affinity": {
               "additionalProperties": false, 
               "description": "Affinity is a group of affinity scheduling rules.", 
@@ -793,7 +877,10 @@
                     "requiredDuringSchedulingIgnoredDuringExecution": {
                       "items": {
                         "additionalProperties": false, 
-                        "description": "Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> tches that of any node on which a pod of the set of pods is running", 
+                        "required": [
+                          "topologyKey"
+                        ], 
+                        "description": "Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> matches that of any node on which a pod of the set of pods is running", 
                         "properties": {
                           "labelSelector": {
                             "additionalProperties": false, 
@@ -820,7 +907,7 @@
                                   "properties": {
                                     "operator": {
                                       "type": "string", 
-                                      "description": "operator represents a key's relationship to a set of values. Valid operators ard In, NotIn, Exists and DoesNotExist."
+                                      "description": "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist."
                                     }, 
                                     "values": {
                                       "items": {
@@ -865,11 +952,8 @@
                             "description": "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means \"this pod's namespace\""
                           }, 
                           "topologyKey": {
-                            "type": [
-                              "string", 
-                              "null"
-                            ], 
-                            "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. For PreferredDuringScheduling pod anti-affinity, empty topologyKey is interpreted as \"all topologies\" (\"all topologies\" here means all the topologyKeys indicated by scheduler command-line argument --failure-domains); for affinity and for RequiredDuringScheduling pod anti-affinity, empty topologyKey is not allowed."
+                            "type": "string", 
+                            "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed."
                           }
                         }
                       }, 
@@ -877,7 +961,7 @@
                         "array", 
                         "null"
                       ], 
-                      "description": "NOT YET IMPLEMENTED. TODO: Uncomment field once it is implemented. If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system will try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. RequiredDuringSchedulingRequiredDuringExecution []PodAffinityTerm  `json:\"requiredDuringSchedulingRequiredDuringExecution,omitempty\"` If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied."
+                      "description": "If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied."
                     }, 
                     "preferredDuringSchedulingIgnoredDuringExecution": {
                       "items": {
@@ -890,7 +974,10 @@
                         "properties": {
                           "podAffinityTerm": {
                             "additionalProperties": false, 
-                            "description": "Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> tches that of any node on which a pod of the set of pods is running", 
+                            "required": [
+                              "topologyKey"
+                            ], 
+                            "description": "Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> matches that of any node on which a pod of the set of pods is running", 
                             "properties": {
                               "labelSelector": {
                                 "additionalProperties": false, 
@@ -917,7 +1004,7 @@
                                       "properties": {
                                         "operator": {
                                           "type": "string", 
-                                          "description": "operator represents a key's relationship to a set of values. Valid operators ard In, NotIn, Exists and DoesNotExist."
+                                          "description": "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist."
                                         }, 
                                         "values": {
                                           "items": {
@@ -962,11 +1049,8 @@
                                 "description": "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means \"this pod's namespace\""
                               }, 
                               "topologyKey": {
-                                "type": [
-                                  "string", 
-                                  "null"
-                                ], 
-                                "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. For PreferredDuringScheduling pod anti-affinity, empty topologyKey is interpreted as \"all topologies\" (\"all topologies\" here means all the topologyKeys indicated by scheduler command-line argument --failure-domains); for affinity and for RequiredDuringScheduling pod anti-affinity, empty topologyKey is not allowed."
+                                "type": "string", 
+                                "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed."
                               }
                             }
                           }, 
@@ -1031,10 +1115,8 @@
                                       "description": "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch."
                                     }, 
                                     "key": {
-                                      "x-kubernetes-patch-merge-key": "key", 
                                       "type": "string", 
-                                      "description": "The label key that the selector applies to.", 
-                                      "x-kubernetes-patch-strategy": "merge"
+                                      "description": "The label key that the selector applies to."
                                     }
                                   }
                                 }, 
@@ -1091,10 +1173,8 @@
                                       "description": "An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch."
                                     }, 
                                     "key": {
-                                      "x-kubernetes-patch-merge-key": "key", 
                                       "type": "string", 
-                                      "description": "The label key that the selector applies to.", 
-                                      "x-kubernetes-patch-strategy": "merge"
+                                      "description": "The label key that the selector applies to."
                                     }
                                   }
                                 }, 
@@ -1125,7 +1205,10 @@
                     "requiredDuringSchedulingIgnoredDuringExecution": {
                       "items": {
                         "additionalProperties": false, 
-                        "description": "Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> tches that of any node on which a pod of the set of pods is running", 
+                        "required": [
+                          "topologyKey"
+                        ], 
+                        "description": "Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> matches that of any node on which a pod of the set of pods is running", 
                         "properties": {
                           "labelSelector": {
                             "additionalProperties": false, 
@@ -1152,7 +1235,7 @@
                                   "properties": {
                                     "operator": {
                                       "type": "string", 
-                                      "description": "operator represents a key's relationship to a set of values. Valid operators ard In, NotIn, Exists and DoesNotExist."
+                                      "description": "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist."
                                     }, 
                                     "values": {
                                       "items": {
@@ -1197,11 +1280,8 @@
                             "description": "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means \"this pod's namespace\""
                           }, 
                           "topologyKey": {
-                            "type": [
-                              "string", 
-                              "null"
-                            ], 
-                            "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. For PreferredDuringScheduling pod anti-affinity, empty topologyKey is interpreted as \"all topologies\" (\"all topologies\" here means all the topologyKeys indicated by scheduler command-line argument --failure-domains); for affinity and for RequiredDuringScheduling pod anti-affinity, empty topologyKey is not allowed."
+                            "type": "string", 
+                            "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed."
                           }
                         }
                       }, 
@@ -1209,7 +1289,7 @@
                         "array", 
                         "null"
                       ], 
-                      "description": "NOT YET IMPLEMENTED. TODO: Uncomment field once it is implemented. If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system will try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied. RequiredDuringSchedulingRequiredDuringExecution []PodAffinityTerm  `json:\"requiredDuringSchedulingRequiredDuringExecution,omitempty\"` If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied."
+                      "description": "If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied."
                     }, 
                     "preferredDuringSchedulingIgnoredDuringExecution": {
                       "items": {
@@ -1222,7 +1302,10 @@
                         "properties": {
                           "podAffinityTerm": {
                             "additionalProperties": false, 
-                            "description": "Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> tches that of any node on which a pod of the set of pods is running", 
+                            "required": [
+                              "topologyKey"
+                            ], 
+                            "description": "Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> matches that of any node on which a pod of the set of pods is running", 
                             "properties": {
                               "labelSelector": {
                                 "additionalProperties": false, 
@@ -1249,7 +1332,7 @@
                                       "properties": {
                                         "operator": {
                                           "type": "string", 
-                                          "description": "operator represents a key's relationship to a set of values. Valid operators ard In, NotIn, Exists and DoesNotExist."
+                                          "description": "operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist."
                                         }, 
                                         "values": {
                                           "items": {
@@ -1294,11 +1377,8 @@
                                 "description": "namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means \"this pod's namespace\""
                               }, 
                               "topologyKey": {
-                                "type": [
-                                  "string", 
-                                  "null"
-                                ], 
-                                "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. For PreferredDuringScheduling pod anti-affinity, empty topologyKey is interpreted as \"all topologies\" (\"all topologies\" here means all the topologyKeys indicated by scheduler command-line argument --failure-domains); for affinity and for RequiredDuringScheduling pod anti-affinity, empty topologyKey is not allowed."
+                                "type": "string", 
+                                "description": "This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed."
                               }
                             }
                           }, 
@@ -1351,13 +1431,11 @@
                     "description": "Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute."
                   }, 
                   "key": {
-                    "x-kubernetes-patch-merge-key": "key", 
                     "type": [
                       "string", 
                       "null"
                     ], 
-                    "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.", 
-                    "x-kubernetes-patch-strategy": "merge"
+                    "description": "Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys."
                   }
                 }
               }, 
@@ -1378,8 +1456,7 @@
               "items": {
                 "additionalProperties": false, 
                 "required": [
-                  "name", 
-                  "image"
+                  "name"
                 ], 
                 "description": "A single application container that you want to run within a pod.", 
                 "properties": {
@@ -1555,7 +1632,7 @@
                             "string", 
                             "null"
                           ], 
-                          "description": "An optional identifer to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER."
+                          "description": "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER."
                         }, 
                         "configMapRef": {
                           "additionalProperties": false, 
@@ -1612,9 +1689,12 @@
                           "type": "boolean", 
                           "description": "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false."
                         }, 
-                        "mountPath": {
-                          "type": "string", 
-                          "description": "Path within the container at which the volume should be mounted.  Must not contain ':'."
+                        "mountPropagation": {
+                          "type": [
+                            "string", 
+                            "null"
+                          ], 
+                          "description": "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationHostToContainer is used. This field is beta in 1.10."
                         }, 
                         "subPath": {
                           "type": [
@@ -1626,6 +1706,10 @@
                         "name": {
                           "type": "string", 
                           "description": "This must match the Name of a Volume."
+                        }, 
+                        "mountPath": {
+                          "type": "string", 
+                          "description": "Path within the container at which the volume should be mounted.  Must not contain ':'."
                         }
                       }
                     }, 
@@ -1638,8 +1722,11 @@
                     "x-kubernetes-patch-merge-key": "mountPath"
                   }, 
                   "image": {
-                    "type": "string", 
-                    "description": "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images"
+                    "type": [
+                      "string", 
+                      "null"
+                    ], 
+                    "description": "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets."
                   }, 
                   "args": {
                     "items": {
@@ -1671,6 +1758,33 @@
                       "null"
                     ], 
                     "description": "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated."
+                  }, 
+                  "volumeDevices": {
+                    "items": {
+                      "additionalProperties": false, 
+                      "required": [
+                        "name", 
+                        "devicePath"
+                      ], 
+                      "description": "volumeDevice describes a mapping of a raw block device within a container.", 
+                      "properties": {
+                        "devicePath": {
+                          "type": "string", 
+                          "description": "devicePath is the path inside of the container that the device will be mapped to."
+                        }, 
+                        "name": {
+                          "type": "string", 
+                          "description": "name must match the name of a persistentVolumeClaim in the pod"
+                        }
+                      }
+                    }, 
+                    "type": [
+                      "array", 
+                      "null"
+                    ], 
+                    "description": "volumeDevices is the list of block devices to be used by the container. This is an alpha feature and may change in the future.", 
+                    "x-kubernetes-patch-strategy": "merge", 
+                    "x-kubernetes-patch-merge-key": "devicePath"
                   }, 
                   "command": {
                     "items": {
@@ -1983,10 +2097,19 @@
                         "type": "boolean", 
                         "description": "Whether this container has a read-only root filesystem. Default is false."
                       }, 
+                      "runAsGroup": {
+                        "type": "integer", 
+                        "description": "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.", 
+                        "format": "int64"
+                      }, 
                       "runAsUser": {
                         "type": "integer", 
                         "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.", 
                         "format": "int64"
+                      }, 
+                      "allowPrivilegeEscalation": {
+                        "type": "boolean", 
+                        "description": "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN"
                       }, 
                       "capabilities": {
                         "additionalProperties": false, 
@@ -2414,6 +2537,13 @@
               "x-kubernetes-patch-strategy": "merge", 
               "x-kubernetes-patch-merge-key": "name"
             }, 
+            "priorityClassName": {
+              "type": [
+                "string", 
+                "null"
+              ], 
+              "description": "If specified, indicates the pod's priority. \"system-node-critical\" and \"system-cluster-critical\" are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default."
+            }, 
             "serviceAccountName": {
               "type": [
                 "string", 
@@ -2431,6 +2561,64 @@
             "hostIPC": {
               "type": "boolean", 
               "description": "Use the host's ipc namespace. Optional: Default to false."
+            }, 
+            "dnsConfig": {
+              "additionalProperties": false, 
+              "description": "PodDNSConfig defines the DNS parameters of a pod in addition to those generated from DNSPolicy.", 
+              "properties": {
+                "nameservers": {
+                  "items": {
+                    "type": [
+                      "string", 
+                      "null"
+                    ]
+                  }, 
+                  "type": [
+                    "array", 
+                    "null"
+                  ], 
+                  "description": "A list of DNS name server IP addresses. This will be appended to the base nameservers generated from DNSPolicy. Duplicated nameservers will be removed."
+                }, 
+                "searches": {
+                  "items": {
+                    "type": [
+                      "string", 
+                      "null"
+                    ]
+                  }, 
+                  "type": [
+                    "array", 
+                    "null"
+                  ], 
+                  "description": "A list of DNS search domains for host-name lookup. This will be appended to the base search paths generated from DNSPolicy. Duplicated search paths will be removed."
+                }, 
+                "options": {
+                  "items": {
+                    "additionalProperties": false, 
+                    "description": "PodDNSConfigOption defines DNS resolver options of a pod.", 
+                    "properties": {
+                      "name": {
+                        "type": [
+                          "string", 
+                          "null"
+                        ], 
+                        "description": "Required."
+                      }, 
+                      "value": {
+                        "type": [
+                          "string", 
+                          "null"
+                        ]
+                      }
+                    }
+                  }, 
+                  "type": [
+                    "array", 
+                    "null"
+                  ], 
+                  "description": "A list of DNS resolver options. This will be merged with the base options generated from DNSPolicy. Duplicated entries will be removed. Resolution options given in Options will override those that appear in the base DNSPolicy."
+                }
+              }
             }, 
             "activeDeadlineSeconds": {
               "type": "integer", 
@@ -2602,7 +2790,7 @@
                     "properties": {
                       "targetPortal": {
                         "type": "string", 
-                        "description": "iSCSI target portal. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260)."
+                        "description": "iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260)."
                       }, 
                       "portals": {
                         "items": {
@@ -2615,7 +2803,7 @@
                           "array", 
                           "null"
                         ], 
-                        "description": "iSCSI target portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260)."
+                        "description": "iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260)."
                       }, 
                       "secretRef": {
                         "additionalProperties": false, 
@@ -2645,12 +2833,19 @@
                         "type": "boolean", 
                         "description": "whether support iSCSI Session CHAP authentication"
                       }, 
+                      "initiatorName": {
+                        "type": [
+                          "string", 
+                          "null"
+                        ], 
+                        "description": "Custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection."
+                      }, 
                       "iscsiInterface": {
                         "type": [
                           "string", 
                           "null"
                         ], 
-                        "description": "Optional: Defaults to 'default' (tcp). iSCSI interface name that uses an iSCSI transport."
+                        "description": "iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp)."
                       }, 
                       "chapAuthDiscovery": {
                         "type": "boolean", 
@@ -2662,7 +2857,7 @@
                       }, 
                       "lun": {
                         "type": "integer", 
-                        "description": "iSCSI target lun number.", 
+                        "description": "iSCSI Target Lun number.", 
                         "format": "int32"
                       }
                     }
@@ -2935,7 +3130,7 @@
                           "string", 
                           "null"
                         ], 
-                        "description": "Indicates whether the storage for a volume should be thick or thin (defaults to \"thin\")."
+                        "description": "Indicates whether the storage for a volume should be ThickProvisioned or ThinProvisioned."
                       }, 
                       "secretRef": {
                         "additionalProperties": false, 
@@ -2955,7 +3150,7 @@
                           "string", 
                           "null"
                         ], 
-                        "description": "The name of the Protection Domain for the configured storage (defaults to \"default\")."
+                        "description": "The name of the ScaleIO Protection Domain for the configured storage."
                       }, 
                       "volumeName": {
                         "type": [
@@ -2988,7 +3183,7 @@
                           "string", 
                           "null"
                         ], 
-                        "description": "The Storage Pool associated with the protection domain (defaults to \"default\")."
+                        "description": "The ScaleIO Storage Pool associated with the protection domain."
                       }, 
                       "gateway": {
                         "type": "string", 
@@ -3040,7 +3235,7 @@
                           "string", 
                           "null"
                         ], 
-                        "description": "Expected values Shared: mulitple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared"
+                        "description": "Expected values Shared: multiple blob disks per storage account  Dedicated: single blob disk per storage account  Managed: azure managed data disk (only in managed availability set). defaults to shared"
                       }, 
                       "fsType": {
                         "type": [
@@ -3061,16 +3256,8 @@
                   }, 
                   "fc": {
                     "additionalProperties": false, 
-                    "required": [
-                      "targetWWNs", 
-                      "lun"
-                    ], 
                     "description": "Represents a Fibre Channel volume. Fibre Channel volumes can only be mounted as read/write once. Fibre Channel volumes support ownership management and SELinux relabeling.", 
                     "properties": {
-                      "readOnly": {
-                        "type": "boolean", 
-                        "description": "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts."
-                      }, 
                       "targetWWNs": {
                         "items": {
                           "type": [
@@ -3078,12 +3265,32 @@
                             "null"
                           ]
                         }, 
-                        "type": "array", 
-                        "description": "Required: FC target worldwide names (WWNs)"
+                        "type": [
+                          "array", 
+                          "null"
+                        ], 
+                        "description": "Optional: FC target worldwide names (WWNs)"
+                      }, 
+                      "wwids": {
+                        "items": {
+                          "type": [
+                            "string", 
+                            "null"
+                          ]
+                        }, 
+                        "type": [
+                          "array", 
+                          "null"
+                        ], 
+                        "description": "Optional: FC volume world wide identifiers (wwids) Either wwids or combination of targetWWNs and lun must be set, but not both simultaneously."
+                      }, 
+                      "readOnly": {
+                        "type": "boolean", 
+                        "description": "Optional: Defaults to false (read/write). ReadOnly here will force the ReadOnly setting in VolumeMounts."
                       }, 
                       "lun": {
                         "type": "integer", 
-                        "description": "Required: FC target lun number", 
+                        "description": "Optional: FC target lun number", 
                         "format": "int32"
                       }, 
                       "fsType": {
@@ -3100,7 +3307,7 @@
                     "required": [
                       "driver"
                     ], 
-                    "description": "FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. This is an alpha feature and may change in future.", 
+                    "description": "FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.", 
                     "properties": {
                       "secretRef": {
                         "additionalProperties": false, 
@@ -3377,7 +3584,14 @@
                     "properties": {
                       "path": {
                         "type": "string", 
-                        "description": "Path of the directory on the host. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath"
+                        "description": "Path of the directory on the host. If the path is a symlink, it will follow the link to the real path. More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath"
+                      }, 
+                      "type": {
+                        "type": [
+                          "string", 
+                          "null"
+                        ], 
+                        "description": "Type for HostPath Volume Defaults to \"\" More info: https://kubernetes.io/docs/concepts/storage/volumes#hostpath"
                       }
                     }
                   }, 
@@ -3672,15 +3886,14 @@
                 "null"
               ], 
               "description": "List of volumes that can be mounted by containers belonging to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes", 
-              "x-kubernetes-patch-strategy": "merge", 
+              "x-kubernetes-patch-strategy": "merge,retainKeys", 
               "x-kubernetes-patch-merge-key": "name"
             }, 
             "initContainers": {
               "items": {
                 "additionalProperties": false, 
                 "required": [
-                  "name", 
-                  "image"
+                  "name"
                 ], 
                 "description": "A single application container that you want to run within a pod.", 
                 "properties": {
@@ -3856,7 +4069,7 @@
                             "string", 
                             "null"
                           ], 
-                          "description": "An optional identifer to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER."
+                          "description": "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER."
                         }, 
                         "configMapRef": {
                           "additionalProperties": false, 
@@ -3913,9 +4126,12 @@
                           "type": "boolean", 
                           "description": "Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false."
                         }, 
-                        "mountPath": {
-                          "type": "string", 
-                          "description": "Path within the container at which the volume should be mounted.  Must not contain ':'."
+                        "mountPropagation": {
+                          "type": [
+                            "string", 
+                            "null"
+                          ], 
+                          "description": "mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationHostToContainer is used. This field is beta in 1.10."
                         }, 
                         "subPath": {
                           "type": [
@@ -3927,6 +4143,10 @@
                         "name": {
                           "type": "string", 
                           "description": "This must match the Name of a Volume."
+                        }, 
+                        "mountPath": {
+                          "type": "string", 
+                          "description": "Path within the container at which the volume should be mounted.  Must not contain ':'."
                         }
                       }
                     }, 
@@ -3939,8 +4159,11 @@
                     "x-kubernetes-patch-merge-key": "mountPath"
                   }, 
                   "image": {
-                    "type": "string", 
-                    "description": "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images"
+                    "type": [
+                      "string", 
+                      "null"
+                    ], 
+                    "description": "Docker image name. More info: https://kubernetes.io/docs/concepts/containers/images This field is optional to allow higher level config management to default or override container images in workload controllers like Deployments and StatefulSets."
                   }, 
                   "args": {
                     "items": {
@@ -3972,6 +4195,33 @@
                       "null"
                     ], 
                     "description": "Indicate how the termination message should be populated. File will use the contents of terminationMessagePath to populate the container status message on both success and failure. FallbackToLogsOnError will use the last chunk of container log output if the termination message file is empty and the container exited with an error. The log output is limited to 2048 bytes or 80 lines, whichever is smaller. Defaults to File. Cannot be updated."
+                  }, 
+                  "volumeDevices": {
+                    "items": {
+                      "additionalProperties": false, 
+                      "required": [
+                        "name", 
+                        "devicePath"
+                      ], 
+                      "description": "volumeDevice describes a mapping of a raw block device within a container.", 
+                      "properties": {
+                        "devicePath": {
+                          "type": "string", 
+                          "description": "devicePath is the path inside of the container that the device will be mapped to."
+                        }, 
+                        "name": {
+                          "type": "string", 
+                          "description": "name must match the name of a persistentVolumeClaim in the pod"
+                        }
+                      }
+                    }, 
+                    "type": [
+                      "array", 
+                      "null"
+                    ], 
+                    "description": "volumeDevices is the list of block devices to be used by the container. This is an alpha feature and may change in the future.", 
+                    "x-kubernetes-patch-strategy": "merge", 
+                    "x-kubernetes-patch-merge-key": "devicePath"
                   }, 
                   "command": {
                     "items": {
@@ -4284,10 +4534,19 @@
                         "type": "boolean", 
                         "description": "Whether this container has a read-only root filesystem. Default is false."
                       }, 
+                      "runAsGroup": {
+                        "type": "integer", 
+                        "description": "The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.", 
+                        "format": "int64"
+                      }, 
                       "runAsUser": {
                         "type": "integer", 
                         "description": "The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in PodSecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.", 
                         "format": "int64"
+                      }, 
+                      "allowPrivilegeEscalation": {
+                        "type": "boolean", 
+                        "description": "AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN"
                       }, 
                       "capabilities": {
                         "additionalProperties": false, 
@@ -4893,7 +5152,7 @@
                         }, 
                         "retryAfterSeconds": {
                           "type": "integer", 
-                          "description": "If specified, the time in seconds before the operation should be retried.", 
+                          "description": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.", 
                           "format": "int32"
                         }, 
                         "causes": {
@@ -4950,12 +5209,19 @@
                       "additionalProperties": false, 
                       "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.", 
                       "properties": {
+                        "continue": {
+                          "type": [
+                            "string", 
+                            "null"
+                          ], 
+                          "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response."
+                        }, 
                         "selfLink": {
                           "type": [
                             "string", 
                             "null"
                           ], 
-                          "description": "SelfLink is a URL representing this object. Populated by the system. Read-only."
+                          "description": "selfLink is a URL representing this object. Populated by the system. Read-only."
                         }, 
                         "resourceVersion": {
                           "type": [
@@ -4983,7 +5249,9 @@
                     }
                   }, 
                   "type": "array", 
-                  "description": "Pending is a list of initializers that must execute in order before this object is visible. When the last pending initializer is removed, and no failing result is set, the initializers struct will be set to nil and the object is considered as initialized and visible to all clients."
+                  "description": "Pending is a list of initializers that must execute in order before this object is visible. When the last pending initializer is removed, and no failing result is set, the initializers struct will be set to nil and the object is considered as initialized and visible to all clients.", 
+                  "x-kubernetes-patch-strategy": "merge", 
+                  "x-kubernetes-patch-merge-key": "name"
                 }
               }
             }, 
@@ -5089,7 +5357,7 @@
           "properties": {
             "partition": {
               "type": "integer", 
-              "description": "Partition indicates the ordinal at which the StatefulSet should be partitioned.", 
+              "description": "Partition indicates the ordinal at which the StatefulSet should be partitioned. Default value is 0.", 
               "format": "int32"
             }
           }
@@ -5099,7 +5367,7 @@
             "string", 
             "null"
           ], 
-          "description": "Type indicates the type of the StatefulSetUpdateStrategy."
+          "description": "Type indicates the type of the StatefulSetUpdateStrategy. Default is RollingUpdate."
         }
       }
     }

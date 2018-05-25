@@ -21,7 +21,7 @@
   "properties": {
     "status": {
       "description": "status holds any relevant information about a build config", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.build.apis.build.v1.BuildConfigStatus"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.build.v1.BuildConfigStatus"
     }, 
     "kind": {
       "type": [
@@ -32,7 +32,7 @@
     }, 
     "spec": {
       "description": "spec holds all the input necessary to produce a new build, and the conditions when to trigger them.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.build.apis.build.v1.BuildConfigSpec"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.build.v1.BuildConfigSpec"
     }, 
     "apiVersion": {
       "type": [
@@ -43,7 +43,7 @@
     }, 
     "metadata": {
       "description": "metadata for BuildConfig.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
     }
   }
 }

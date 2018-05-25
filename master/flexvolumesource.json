@@ -4,7 +4,7 @@
     "driver"
   ], 
   "type": "object", 
-  "description": "FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin. This is an alpha feature and may change in future.", 
+  "description": "FlexVolume represents a generic volume resource that is provisioned/attached using an exec based plugin.", 
   "properties": {
     "readOnly": {
       "type": "boolean", 
@@ -26,7 +26,7 @@
     }, 
     "secretRef": {
       "description": "Optional: SecretRef is reference to the secret object containing sensitive information to pass to the plugin scripts. This may be empty if no secret object is specified. If the secret object contains more than one secret, all secrets are passed to the plugin scripts.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.LocalObjectReference"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.api.core.v1.LocalObjectReference"
     }, 
     "options": {
       "additionalProperties": {

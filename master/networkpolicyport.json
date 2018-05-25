@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema#", 
   "type": "object", 
+  "description": "DEPRECATED 1.9 - This group version of NetworkPolicyPort is deprecated by networking/v1/NetworkPolicyPort.", 
   "properties": {
     "protocol": {
       "type": [
@@ -11,7 +12,7 @@
     }, 
     "port": {
       "description": "If specified, the port on the given protocol.  This can either be a numerical or named port on a pod.  If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.util.intstr.IntOrString"
     }
   }
 }

@@ -5,7 +5,7 @@
   "properties": {
     "lookupPolicy": {
       "description": "lookupPolicy controls how other resources reference images within this namespace.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.image.apis.image.v1.ImageLookupPolicy"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.image.v1.ImageLookupPolicy"
     }, 
     "dockerImageRepository": {
       "type": [
@@ -16,13 +16,15 @@
     }, 
     "tags": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.image.apis.image.v1.TagReference"
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.image.v1.TagReference"
       }, 
       "type": [
         "array", 
         "null"
       ], 
-      "description": "tags map arbitrary string values to specific image locators"
+      "description": "tags map arbitrary string values to specific image locators", 
+      "x-kubernetes-patch-strategy": "merge", 
+      "x-kubernetes-patch-merge-key": "name"
     }
   }
 }

@@ -20,7 +20,7 @@
   "properties": {
     "status": {
       "description": "Status is completed by the server to tell which permissions you have", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.authorization.apis.authorization.v1.SubjectRulesReviewStatus"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.authorization.v1.SubjectRulesReviewStatus"
     }, 
     "kind": {
       "type": [
@@ -31,7 +31,7 @@
     }, 
     "spec": {
       "description": "Spec adds information about how to conduct the check", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.authorization.apis.authorization.v1.SubjectRulesReviewSpec"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.authorization.v1.SubjectRulesReviewSpec"
     }, 
     "apiVersion": {
       "type": [

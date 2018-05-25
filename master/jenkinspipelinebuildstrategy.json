@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema#", 
   "type": "object", 
-  "description": "JenkinsPipelineBuildStrategy holds parameters specific to a Jenkins Pipeline build. This strategy is in tech preview.", 
+  "description": "JenkinsPipelineBuildStrategy holds parameters specific to a Jenkins Pipeline build.", 
   "properties": {
     "jenkinsfilePath": {
       "type": [
@@ -12,7 +12,7 @@
     }, 
     "env": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.EnvVar"
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.api.core.v1.EnvVar"
       }, 
       "type": [
         "array", 

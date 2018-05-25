@@ -38,7 +38,7 @@
     }, 
     "state": {
       "description": "Details about the container's current condition.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.ContainerState"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.api.core.v1.ContainerState"
     }, 
     "ready": {
       "type": "boolean", 
@@ -46,7 +46,7 @@
     }, 
     "lastState": {
       "description": "Details about the container's last termination condition.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.ContainerState"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.api.core.v1.ContainerState"
     }, 
     "containerID": {
       "type": [

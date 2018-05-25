@@ -11,7 +11,7 @@
         "string", 
         "null"
       ], 
-      "description": "Set DNS policy for containers within the pod. One of 'ClusterFirstWithHostNet', 'ClusterFirst' or 'Default'. Defaults to \"ClusterFirst\". To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'."
+      "description": "Set DNS policy for the pod. Defaults to \"ClusterFirst\". Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'."
     }, 
     "hostNetwork": {
       "type": "boolean", 
@@ -28,9 +28,13 @@
       "type": "boolean", 
       "description": "AutomountServiceAccountToken indicates whether a service account token should be automatically mounted."
     }, 
+    "shareProcessNamespace": {
+      "type": "boolean", 
+      "description": "Share a single process namespace between all of the containers in a pod. When this is set containers will be able to view and signal processes from other containers in the same pod, and the first process in each container will not be assigned PID 1. HostPID and ShareProcessNamespace cannot both be set. Optional: Default to false. This field is alpha-level and is honored only by servers that enable the PodShareProcessNamespace feature."
+    }, 
     "securityContext": {
       "description": "SecurityContext holds pod-level security attributes and common container settings. Optional: Defaults to empty.  See type description for default values of each field.", 
-      "$ref": "_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.PodSecurityContext"
+      "$ref": "_definitions.json#/definitions/io.k8s.api.core.v1.PodSecurityContext"
     }, 
     "nodeName": {
       "type": [
@@ -41,7 +45,7 @@
     }, 
     "hostAliases": {
       "items": {
-        "$ref": "_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.HostAlias"
+        "$ref": "_definitions.json#/definitions/io.k8s.api.core.v1.HostAlias"
       }, 
       "type": [
         "array", 
@@ -75,13 +79,18 @@
       "type": "object", 
       "description": "NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/"
     }, 
+    "priority": {
+      "type": "integer", 
+      "description": "The priority value. Various system components use this field to find the priority of the pod. When Priority Admission Controller is enabled, it prevents users from setting this field. The admission controller populates this field from PriorityClassName. The higher the value, the higher the priority.", 
+      "format": "int32"
+    }, 
     "affinity": {
       "description": "If specified, the pod's scheduling constraints", 
-      "$ref": "_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.Affinity"
+      "$ref": "_definitions.json#/definitions/io.k8s.api.core.v1.Affinity"
     }, 
     "tolerations": {
       "items": {
-        "$ref": "_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.Toleration"
+        "$ref": "_definitions.json#/definitions/io.k8s.api.core.v1.Toleration"
       }, 
       "type": [
         "array", 
@@ -98,7 +107,7 @@
     }, 
     "containers": {
       "items": {
-        "$ref": "_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.Container"
+        "$ref": "_definitions.json#/definitions/io.k8s.api.core.v1.Container"
       }, 
       "type": [
         "array", 
@@ -107,6 +116,13 @@
       "description": "List of containers belonging to the pod. Containers cannot currently be added or removed. There must be at least one container in a Pod. Cannot be updated.", 
       "x-kubernetes-patch-strategy": "merge", 
       "x-kubernetes-patch-merge-key": "name"
+    }, 
+    "priorityClassName": {
+      "type": [
+        "string", 
+        "null"
+      ], 
+      "description": "If specified, indicates the pod's priority. \"system-node-critical\" and \"system-cluster-critical\" are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default."
     }, 
     "serviceAccountName": {
       "type": [
@@ -126,6 +142,10 @@
       "type": "boolean", 
       "description": "Use the host's ipc namespace. Optional: Default to false."
     }, 
+    "dnsConfig": {
+      "description": "Specifies the DNS parameters of a pod. Parameters specified here will be merged to the generated DNS configuration based on DNSPolicy.", 
+      "$ref": "_definitions.json#/definitions/io.k8s.api.core.v1.PodDNSConfig"
+    }, 
     "activeDeadlineSeconds": {
       "type": "integer", 
       "description": "Optional duration in seconds the pod may be active on the node relative to StartTime before the system will actively try to mark it failed and kill associated containers. Value must be a positive integer.", 
@@ -142,19 +162,19 @@
     }, 
     "volumes": {
       "items": {
-        "$ref": "_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.Volume"
+        "$ref": "_definitions.json#/definitions/io.k8s.api.core.v1.Volume"
       }, 
       "type": [
         "array", 
         "null"
       ], 
       "description": "List of volumes that can be mounted by containers belonging to the pod. More info: https://kubernetes.io/docs/concepts/storage/volumes", 
-      "x-kubernetes-patch-strategy": "merge", 
+      "x-kubernetes-patch-strategy": "merge,retainKeys", 
       "x-kubernetes-patch-merge-key": "name"
     }, 
     "initContainers": {
       "items": {
-        "$ref": "_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.Container"
+        "$ref": "_definitions.json#/definitions/io.k8s.api.core.v1.Container"
       }, 
       "type": [
         "array", 
@@ -166,7 +186,7 @@
     }, 
     "imagePullSecrets": {
       "items": {
-        "$ref": "_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.LocalObjectReference"
+        "$ref": "_definitions.json#/definitions/io.k8s.api.core.v1.LocalObjectReference"
       }, 
       "type": [
         "array", 

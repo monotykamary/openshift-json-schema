@@ -26,7 +26,7 @@
     }, 
     "conditions": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.route.apis.route.v1.RouteIngressCondition"
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.route.v1.RouteIngressCondition"
       }, 
       "type": [
         "array", 

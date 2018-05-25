@@ -21,7 +21,7 @@
   "properties": {
     "status": {
       "description": "status is the current state of the route", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.route.apis.route.v1.RouteStatus"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.route.v1.RouteStatus"
     }, 
     "kind": {
       "type": [
@@ -32,7 +32,7 @@
     }, 
     "spec": {
       "description": "spec is the desired state of the route", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.route.apis.route.v1.RouteSpec"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.route.v1.RouteSpec"
     }, 
     "apiVersion": {
       "type": [
@@ -43,7 +43,7 @@
     }, 
     "metadata": {
       "description": "Standard object metadata.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
     }
   }
 }

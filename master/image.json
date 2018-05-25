@@ -41,7 +41,7 @@
     }, 
     "signatures": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.image.apis.image.v1.ImageSignature"
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.image.v1.ImageSignature"
       }, 
       "type": [
         "array", 
@@ -53,7 +53,7 @@
     }, 
     "dockerImageLayers": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.image.apis.image.v1.ImageLayer"
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.image.v1.ImageLayer"
       }, 
       "type": [
         "array", 
@@ -84,7 +84,7 @@
     }, 
     "metadata": {
       "description": "Standard object's metadata.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
     }, 
     "dockerImageReference": {
       "type": [
@@ -108,7 +108,7 @@
       "description": "DockerImageSignatures provides the signatures as opaque blobs. This is a part of manifest schema v1."
     }, 
     "dockerImageMetadata": {
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.runtime.RawExtension", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.runtime.RawExtension", 
       "description": "DockerImageMetadata contains metadata about this image", 
       "x-kubernetes-patch-strategy": "replace"
     }

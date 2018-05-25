@@ -19,7 +19,7 @@
         }, 
         {
           "kind": "DeleteOptions", 
-          "version": "v1alpha1", 
+          "version": "v1beta1", 
           "group": "admission.k8s.io"
         }, 
         {
@@ -30,11 +30,31 @@
         {
           "kind": "DeleteOptions", 
           "version": "v1beta1", 
+          "group": "admissionregistration.k8s.io"
+        }, 
+        {
+          "kind": "DeleteOptions", 
+          "version": "v1", 
           "group": "apiregistration.k8s.io"
         }, 
         {
           "kind": "DeleteOptions", 
           "version": "v1beta1", 
+          "group": "apiregistration.k8s.io"
+        }, 
+        {
+          "kind": "DeleteOptions", 
+          "version": "v1", 
+          "group": "apps"
+        }, 
+        {
+          "kind": "DeleteOptions", 
+          "version": "v1beta1", 
+          "group": "apps"
+        }, 
+        {
+          "kind": "DeleteOptions", 
+          "version": "v1beta2", 
           "group": "apps"
         }, 
         {
@@ -74,12 +94,17 @@
         }, 
         {
           "kind": "DeleteOptions", 
-          "version": "v2alpha1", 
+          "version": "v2beta1", 
           "group": "autoscaling"
         }, 
         {
           "kind": "DeleteOptions", 
           "version": "v1", 
+          "group": "batch"
+        }, 
+        {
+          "kind": "DeleteOptions", 
+          "version": "v1beta1", 
           "group": "batch"
         }, 
         {
@@ -100,12 +125,12 @@
         {
           "kind": "DeleteOptions", 
           "version": "v1beta1", 
-          "group": "extensions"
+          "group": "events.k8s.io"
         }, 
         {
           "kind": "DeleteOptions", 
           "version": "v1beta1", 
-          "group": "federation"
+          "group": "extensions"
         }, 
         {
           "kind": "DeleteOptions", 
@@ -149,6 +174,11 @@
         }, 
         {
           "kind": "DeleteOptions", 
+          "version": "v1", 
+          "group": "rbac.authorization.k8s.io"
+        }, 
+        {
+          "kind": "DeleteOptions", 
           "version": "v1alpha1", 
           "group": "rbac.authorization.k8s.io"
         }, 
@@ -164,6 +194,11 @@
         }, 
         {
           "kind": "DeleteOptions", 
+          "version": "v1alpha1", 
+          "group": "scheduling.k8s.io"
+        }, 
+        {
+          "kind": "DeleteOptions", 
           "version": "v1", 
           "group": "security.openshift.io"
         }, 
@@ -175,6 +210,11 @@
         {
           "kind": "DeleteOptions", 
           "version": "v1", 
+          "group": "storage.k8s.io"
+        }, 
+        {
+          "kind": "DeleteOptions", 
+          "version": "v1alpha1", 
           "group": "storage.k8s.io"
         }, 
         {
@@ -223,7 +263,7 @@
             "string", 
             "null"
           ], 
-          "description": "Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy."
+          "description": "Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground."
         }, 
         "preconditions": {
           "description": "Preconditions must be fulfilled before an operation (update, delete, etc.) is carried out.", 
@@ -437,7 +477,7 @@
                     }, 
                     "retryAfterSeconds": {
                       "type": "integer", 
-                      "description": "If specified, the time in seconds before the operation should be retried.", 
+                      "description": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.", 
                       "format": "int32"
                     }, 
                     "causes": {
@@ -492,12 +532,19 @@
                 "metadata": {
                   "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.", 
                   "properties": {
+                    "continue": {
+                      "type": [
+                        "string", 
+                        "null"
+                      ], 
+                      "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response."
+                    }, 
                     "selfLink": {
                       "type": [
                         "string", 
                         "null"
                       ], 
-                      "description": "SelfLink is a URL representing this object. Populated by the system. Read-only."
+                      "description": "selfLink is a URL representing this object. Populated by the system. Read-only."
                     }, 
                     "resourceVersion": {
                       "type": [
@@ -523,8 +570,10 @@
                   }
                 }
               }, 
+              "x-kubernetes-patch-merge-key": "name", 
               "type": "array", 
-              "description": "Pending is a list of initializers that must execute in order before this object is visible. When the last pending initializer is removed, and no failing result is set, the initializers struct will be set to nil and the object is considered as initialized and visible to all clients."
+              "description": "Pending is a list of initializers that must execute in order before this object is visible. When the last pending initializer is removed, and no failing result is set, the initializers struct will be set to nil and the object is considered as initialized and visible to all clients.", 
+              "x-kubernetes-patch-strategy": "merge"
             }
           }
         }, 

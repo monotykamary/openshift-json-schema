@@ -21,7 +21,7 @@
   "properties": {
     "status": {
       "description": "Status defines the actual enforced quota and its current usage", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.quota.apis.quota.v1.ClusterResourceQuotaStatus"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.quota.v1.ClusterResourceQuotaStatus"
     }, 
     "kind": {
       "type": [
@@ -32,7 +32,7 @@
     }, 
     "spec": {
       "description": "Spec defines the desired quota", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.quota.apis.quota.v1.ClusterResourceQuotaSpec"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.quota.v1.ClusterResourceQuotaSpec"
     }, 
     "apiVersion": {
       "type": [
@@ -43,7 +43,7 @@
     }, 
     "metadata": {
       "description": "Standard object's metadata.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
     }
   }
 }

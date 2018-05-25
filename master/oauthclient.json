@@ -17,7 +17,7 @@
   "properties": {
     "scopeRestrictions": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.oauth.apis.oauth.v1.ScopeRestriction"
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.oauth.v1.ScopeRestriction"
       }, 
       "type": [
         "array", 
@@ -70,6 +70,16 @@
       ], 
       "description": "Secret is the unique secret associated with a client"
     }, 
+    "accessTokenInactivityTimeoutSeconds": {
+      "type": "integer", 
+      "description": "AccessTokenInactivityTimeoutSeconds overrides the default token inactivity timeout for tokens granted to this client. The value represents the maximum amount of time that can occur between consecutive uses of the token. Tokens become invalid if they are not used within this temporal window. The user will need to acquire a new token to regain access once a token times out. This value needs to be set only if the default set in configuration is not appropriate for this client. Valid values are: - 0: Tokens for this client never time out - X: Tokens time out if there is no activity for X seconds The current minimum allowed value for X is 300 (5 minutes)", 
+      "format": "int32"
+    }, 
+    "accessTokenMaxAgeSeconds": {
+      "type": "integer", 
+      "description": "AccessTokenMaxAgeSeconds overrides the default access token max age for tokens granted to this client. 0 means no expiration.", 
+      "format": "int32"
+    }, 
     "redirectURIs": {
       "items": {
         "type": [
@@ -86,7 +96,7 @@
     }, 
     "metadata": {
       "description": "Standard object's metadata.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
     }
   }
 }

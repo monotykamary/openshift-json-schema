@@ -16,9 +16,6 @@
     "items": {
       "items": {
         "additionalProperties": false, 
-        "required": [
-          "subsets"
-        ], 
         "x-kubernetes-group-version-kind": [
           {
             "kind": "Endpoints", 
@@ -255,7 +252,10 @@
                 }
               }
             }, 
-            "type": "array", 
+            "type": [
+              "array", 
+              "null"
+            ], 
             "description": "The set of all endpoints is the union of all subsets. Addresses are placed into subsets according to the IPs they share. A single address with multiple ports, some of which are ready and some of which are not (because they come from different containers) will result in the address being displayed in different subsets for the different ports. No address will appear in both Addresses and NotReadyAddresses in the same subset. Sets of addresses and ports that comprise a service."
           }, 
           "apiVersion": {
@@ -416,7 +416,7 @@
                           }, 
                           "retryAfterSeconds": {
                             "type": "integer", 
-                            "description": "If specified, the time in seconds before the operation should be retried.", 
+                            "description": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.", 
                             "format": "int32"
                           }, 
                           "causes": {
@@ -473,12 +473,19 @@
                         "additionalProperties": false, 
                         "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.", 
                         "properties": {
+                          "continue": {
+                            "type": [
+                              "string", 
+                              "null"
+                            ], 
+                            "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response."
+                          }, 
                           "selfLink": {
                             "type": [
                               "string", 
                               "null"
                             ], 
-                            "description": "SelfLink is a URL representing this object. Populated by the system. Read-only."
+                            "description": "selfLink is a URL representing this object. Populated by the system. Read-only."
                           }, 
                           "resourceVersion": {
                             "type": [
@@ -506,7 +513,9 @@
                       }
                     }, 
                     "type": "array", 
-                    "description": "Pending is a list of initializers that must execute in order before this object is visible. When the last pending initializer is removed, and no failing result is set, the initializers struct will be set to nil and the object is considered as initialized and visible to all clients."
+                    "description": "Pending is a list of initializers that must execute in order before this object is visible. When the last pending initializer is removed, and no failing result is set, the initializers struct will be set to nil and the object is considered as initialized and visible to all clients.", 
+                    "x-kubernetes-patch-strategy": "merge", 
+                    "x-kubernetes-patch-merge-key": "name"
                   }
                 }
               }, 
@@ -621,12 +630,19 @@
       "additionalProperties": false, 
       "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.", 
       "properties": {
+        "continue": {
+          "type": [
+            "string", 
+            "null"
+          ], 
+          "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response."
+        }, 
         "selfLink": {
           "type": [
             "string", 
             "null"
           ], 
-          "description": "SelfLink is a URL representing this object. Populated by the system. Read-only."
+          "description": "selfLink is a URL representing this object. Populated by the system. Read-only."
         }, 
         "resourceVersion": {
           "type": [

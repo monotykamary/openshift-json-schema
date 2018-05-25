@@ -75,6 +75,11 @@
       ], 
       "description": "UserUID is the unique UID associated with this token"
     }, 
+    "inactivityTimeoutSeconds": {
+      "type": "integer", 
+      "description": "InactivityTimeoutSeconds is the value in seconds, from the CreationTimestamp, after which this token can no longer be used. The value is automatically incremented when the token is used.", 
+      "format": "int32"
+    }, 
     "redirectURI": {
       "type": [
         "string", 
@@ -91,7 +96,7 @@
     }, 
     "metadata": {
       "description": "Standard object's metadata.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
     }
   }
 }

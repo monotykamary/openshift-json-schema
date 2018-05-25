@@ -1,5 +1,5 @@
 {
-  "description": "SecurityContextConstraints governs the ability to make requests that affect the SecurityContext that will be applied to a container.", 
+  "description": "SecurityContextConstraints governs the ability to make requests that affect the SecurityContext that will be applied to a container. For historical reasons SCC was exposed under the core Kubernetes API group. That exposure is deprecated and will be removed in a future release - users should instead use the security.openshift.io group to manage SecurityContextConstraints.", 
   "required": [
     "priority", 
     "allowPrivilegedContainer", 
@@ -8,7 +8,6 @@
     "allowedCapabilities", 
     "allowHostDirVolumePlugin", 
     "volumes", 
-    "allowedFlexVolumes", 
     "allowHostNetwork", 
     "allowHostPorts", 
     "allowHostPID", 
@@ -44,7 +43,7 @@
     }, 
     "allowedFlexVolumes": {
       "items": {
-        "$ref": "_definitions.json#/definitions/com.github.openshift.origin.pkg.security.apis.security.v1.AllowedFlexVolume"
+        "$ref": "_definitions.json#/definitions/com.github.openshift.api.security.v1.AllowedFlexVolume"
       }, 
       "type": [
         "array", 
@@ -54,7 +53,7 @@
     }, 
     "fsGroup": {
       "description": "FSGroup is the strategy that will dictate what fs group is used by the SecurityContext.", 
-      "$ref": "_definitions.json#/definitions/com.github.openshift.origin.pkg.security.apis.security.v1.FSGroupStrategyOptions"
+      "$ref": "_definitions.json#/definitions/com.github.openshift.api.security.v1.FSGroupStrategyOptions"
     }, 
     "priority": {
       "type": "integer", 
@@ -164,7 +163,7 @@
     }, 
     "runAsUser": {
       "description": "RunAsUser is the strategy that will dictate what RunAsUser is used in the SecurityContext.", 
-      "$ref": "_definitions.json#/definitions/com.github.openshift.origin.pkg.security.apis.security.v1.RunAsUserStrategyOptions"
+      "$ref": "_definitions.json#/definitions/com.github.openshift.api.security.v1.RunAsUserStrategyOptions"
     }, 
     "allowPrivilegedContainer": {
       "type": "boolean", 
@@ -179,7 +178,7 @@
     }, 
     "supplementalGroups": {
       "description": "SupplementalGroups is the strategy that will dictate what supplemental groups are used by the SecurityContext.", 
-      "$ref": "_definitions.json#/definitions/com.github.openshift.origin.pkg.security.apis.security.v1.SupplementalGroupsStrategyOptions"
+      "$ref": "_definitions.json#/definitions/com.github.openshift.api.security.v1.SupplementalGroupsStrategyOptions"
     }, 
     "volumes": {
       "items": {
@@ -196,7 +195,7 @@
     }, 
     "seLinuxContext": {
       "description": "SELinuxContext is the strategy that will dictate what labels will be set in the SecurityContext.", 
-      "$ref": "_definitions.json#/definitions/com.github.openshift.origin.pkg.security.apis.security.v1.SELinuxContextStrategyOptions"
+      "$ref": "_definitions.json#/definitions/com.github.openshift.api.security.v1.SELinuxContextStrategyOptions"
     }
   }
 }

@@ -13,7 +13,7 @@
         "string", 
         "null"
       ], 
-      "description": "iSCSI target portal. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260)."
+      "description": "iSCSI Target Portal. The Portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260)."
     }, 
     "portals": {
       "items": {
@@ -26,11 +26,11 @@
         "array", 
         "null"
       ], 
-      "description": "iSCSI target portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260)."
+      "description": "iSCSI Target Portal List. The portal is either an IP or ip_addr:port if the port is other than default (typically TCP ports 860 and 3260)."
     }, 
     "secretRef": {
-      "description": "CHAP secret for iSCSI target and initiator authentication", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.LocalObjectReference"
+      "description": "CHAP Secret for iSCSI target and initiator authentication", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.api.core.v1.LocalObjectReference"
     }, 
     "fsType": {
       "type": [
@@ -47,12 +47,19 @@
       "type": "boolean", 
       "description": "whether support iSCSI Session CHAP authentication"
     }, 
+    "initiatorName": {
+      "type": [
+        "string", 
+        "null"
+      ], 
+      "description": "Custom iSCSI Initiator Name. If initiatorName is specified with iscsiInterface simultaneously, new iSCSI interface <target portal>:<volume name> will be created for the connection."
+    }, 
     "iscsiInterface": {
       "type": [
         "string", 
         "null"
       ], 
-      "description": "Optional: Defaults to 'default' (tcp). iSCSI interface name that uses an iSCSI transport."
+      "description": "iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp)."
     }, 
     "chapAuthDiscovery": {
       "type": "boolean", 
@@ -67,7 +74,7 @@
     }, 
     "lun": {
       "type": "integer", 
-      "description": "iSCSI target lun number.", 
+      "description": "iSCSI Target Lun number.", 
       "format": "int32"
     }
   }

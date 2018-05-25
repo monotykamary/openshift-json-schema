@@ -5,7 +5,7 @@
   "properties": {
     "objects": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.template.apis.template.v1.TemplateInstanceObject"
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.template.v1.TemplateInstanceObject"
       }, 
       "type": [
         "array", 
@@ -15,7 +15,7 @@
     }, 
     "conditions": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.origin.pkg.template.apis.template.v1.TemplateInstanceCondition"
+        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/com.github.openshift.api.template.v1.TemplateInstanceCondition"
       }, 
       "type": [
         "array", 

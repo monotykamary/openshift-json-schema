@@ -29,7 +29,6 @@
           "allowedCapabilities", 
           "allowHostDirVolumePlugin", 
           "volumes", 
-          "allowedFlexVolumes", 
           "allowHostNetwork", 
           "allowHostPorts", 
           "allowHostPID", 
@@ -48,7 +47,7 @@
             "group": "security.openshift.io"
           }
         ], 
-        "description": "SecurityContextConstraints governs the ability to make requests that affect the SecurityContext that will be applied to a container.", 
+        "description": "SecurityContextConstraints governs the ability to make requests that affect the SecurityContext that will be applied to a container. For historical reasons SCC was exposed under the core Kubernetes API group. That exposure is deprecated and will be removed in a future release - users should instead use the security.openshift.io group to manage SecurityContextConstraints.", 
         "properties": {
           "readOnlyRootFilesystem": {
             "type": "boolean", 
@@ -65,18 +64,21 @@
           "allowedFlexVolumes": {
             "items": {
               "additionalProperties": false, 
+              "required": [
+                "driver"
+              ], 
               "description": "AllowedFlexVolume represents a single Flexvolume that is allowed to be used.", 
               "properties": {
                 "driver": {
-                  "type": [
-                    "string", 
-                    "null"
-                  ], 
+                  "type": "string", 
                   "description": "Driver is the name of the Flexvolume driver."
                 }
               }
             }, 
-            "type": "array", 
+            "type": [
+              "array", 
+              "null"
+            ], 
             "description": "AllowedFlexVolumes is a whitelist of allowed Flexvolumes.  Empty or nil indicates that all Flexvolumes may be used.  This parameter is effective only when the usage of the Flexvolumes is allowed in the \"Volumes\" field."
           }, 
           "fsGroup": {
@@ -295,7 +297,7 @@
                           }, 
                           "retryAfterSeconds": {
                             "type": "integer", 
-                            "description": "If specified, the time in seconds before the operation should be retried.", 
+                            "description": "If specified, the time in seconds before the operation should be retried. Some errors may indicate the client must take an alternate action - for those errors this field may indicate how long to wait before taking the alternate action.", 
                             "format": "int32"
                           }, 
                           "causes": {
@@ -352,12 +354,19 @@
                         "additionalProperties": false, 
                         "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.", 
                         "properties": {
+                          "continue": {
+                            "type": [
+                              "string", 
+                              "null"
+                            ], 
+                            "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response."
+                          }, 
                           "selfLink": {
                             "type": [
                               "string", 
                               "null"
                             ], 
-                            "description": "SelfLink is a URL representing this object. Populated by the system. Read-only."
+                            "description": "selfLink is a URL representing this object. Populated by the system. Read-only."
                           }, 
                           "resourceVersion": {
                             "type": [
@@ -385,7 +394,9 @@
                       }
                     }, 
                     "type": "array", 
-                    "description": "Pending is a list of initializers that must execute in order before this object is visible. When the last pending initializer is removed, and no failing result is set, the initializers struct will be set to nil and the object is considered as initialized and visible to all clients."
+                    "description": "Pending is a list of initializers that must execute in order before this object is visible. When the last pending initializer is removed, and no failing result is set, the initializers struct will be set to nil and the object is considered as initialized and visible to all clients.", 
+                    "x-kubernetes-patch-strategy": "merge", 
+                    "x-kubernetes-patch-merge-key": "name"
                   }
                 }
               }, 
@@ -696,12 +707,19 @@
       "additionalProperties": false, 
       "description": "ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.", 
       "properties": {
+        "continue": {
+          "type": [
+            "string", 
+            "null"
+          ], 
+          "description": "continue may be set if the user set a limit on the number of items returned, and indicates that the server has more data available. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a list may not be possible if the server configuration has changed or more than a few minutes have passed. The resourceVersion field returned when using this continue value will be identical to the value in the first response."
+        }, 
         "selfLink": {
           "type": [
             "string", 
             "null"
           ], 
-          "description": "SelfLink is a URL representing this object. Populated by the system. Read-only."
+          "description": "selfLink is a URL representing this object. Populated by the system. Read-only."
         }, 
         "resourceVersion": {
           "type": [

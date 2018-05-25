@@ -8,15 +8,15 @@
         "string", 
         "null"
       ], 
-      "description": "An optional identifer to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER."
+      "description": "An optional identifier to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER."
     }, 
     "configMapRef": {
       "description": "The ConfigMap to select from", 
-      "$ref": "_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.ConfigMapEnvSource"
+      "$ref": "_definitions.json#/definitions/io.k8s.api.core.v1.ConfigMapEnvSource"
     }, 
     "secretRef": {
       "description": "The Secret to select from", 
-      "$ref": "_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.SecretEnvSource"
+      "$ref": "_definitions.json#/definitions/io.k8s.api.core.v1.SecretEnvSource"
     }
   }
 }

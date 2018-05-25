@@ -3,7 +3,7 @@
     {
       "kind": "PodSecurityPolicy", 
       "version": "v1beta1", 
-      "group": "extensions"
+      "group": "policy"
     }
   ], 
   "$schema": "http://json-schema.org/schema#", 
@@ -19,7 +19,7 @@
     }, 
     "spec": {
       "description": "spec defines the policy enforced.", 
-      "$ref": "_definitions.json#/definitions/io.k8s.kubernetes.pkg.apis.extensions.v1beta1.PodSecurityPolicySpec"
+      "$ref": "_definitions.json#/definitions/io.k8s.api.policy.v1beta1.PodSecurityPolicySpec"
     }, 
     "apiVersion": {
       "type": [

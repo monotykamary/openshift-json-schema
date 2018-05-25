@@ -9,7 +9,7 @@
   "properties": {
     "secret": {
       "description": "secret is a reference to a Secret object residing in a namespace, containing the necessary template parameters.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.ObjectReference"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.api.core.v1.ObjectReference"
     }, 
     "bindingIDs": {
       "items": {
@@ -26,7 +26,7 @@
     }, 
     "templateInstance": {
       "description": "templateinstance is a reference to a TemplateInstance object residing in a namespace.", 
-      "$ref": "https://raw.githubusercontent.com/garethr/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.kubernetes.pkg.api.v1.ObjectReference"
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/master/_definitions.json#/definitions/io.k8s.api.core.v1.ObjectReference"
     }
   }
 }
