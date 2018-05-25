@@ -21,8 +21,11 @@
       "format": "int64"
     }, 
     "lastTransitionTime": {
-      "description": "LastTransitionTIme is the time the condition transitioned from one status to another.", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
+      "type": [
+        "string", 
+        "null"
+      ], 
+      "format": "date-time"
     }, 
     "reason": {
       "type": [

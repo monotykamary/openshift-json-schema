@@ -16,8 +16,11 @@
       "description": "State of this Series: Ongoing or Finished"
     }, 
     "lastObservedTime": {
-      "description": "Time of the last occurence observed", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.MicroTime"
+      "type": [
+        "string", 
+        "null"
+      ], 
+      "format": "date-time"
     }
   }
 }

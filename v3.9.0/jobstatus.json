@@ -14,12 +14,18 @@
       "format": "int32"
     }, 
     "completionTime": {
-      "description": "Represents time when the job was completed. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC.", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
+      "type": [
+        "string", 
+        "null"
+      ], 
+      "format": "date-time"
     }, 
     "startTime": {
-      "description": "Represents time when the job was acknowledged by the job controller. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC.", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
+      "type": [
+        "string", 
+        "null"
+      ], 
+      "format": "date-time"
     }, 
     "active": {
       "type": "integer", 
@@ -28,7 +34,50 @@
     }, 
     "conditions": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.batch.v1.JobCondition"
+        "additionalProperties": false, 
+        "required": [
+          "type", 
+          "status"
+        ], 
+        "description": "JobCondition describes current state of a job.", 
+        "properties": {
+          "status": {
+            "type": "string", 
+            "description": "Status of the condition, one of True, False, Unknown."
+          }, 
+          "lastTransitionTime": {
+            "type": [
+              "string", 
+              "null"
+            ], 
+            "format": "date-time"
+          }, 
+          "reason": {
+            "type": [
+              "string", 
+              "null"
+            ], 
+            "description": "(brief) reason for the condition's last transition."
+          }, 
+          "lastProbeTime": {
+            "type": [
+              "string", 
+              "null"
+            ], 
+            "format": "date-time"
+          }, 
+          "message": {
+            "type": [
+              "string", 
+              "null"
+            ], 
+            "description": "Human readable message indicating details about last transition."
+          }, 
+          "type": {
+            "type": "string", 
+            "description": "Type of job condition, Complete or Failed."
+          }
+        }
       }, 
       "type": [
         "array", 

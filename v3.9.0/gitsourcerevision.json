@@ -18,12 +18,44 @@
       "description": "message is the description of a specific commit"
     }, 
     "committer": {
-      "description": "committer is the committer of a specific commit", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.build.v1.SourceControlUser"
+      "additionalProperties": false, 
+      "description": "SourceControlUser defines the identity of a user of source control", 
+      "properties": {
+        "email": {
+          "type": [
+            "string", 
+            "null"
+          ], 
+          "description": "email of the source control user"
+        }, 
+        "name": {
+          "type": [
+            "string", 
+            "null"
+          ], 
+          "description": "name of the source control user"
+        }
+      }
     }, 
     "author": {
-      "description": "author is the author of a specific commit", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.build.v1.SourceControlUser"
+      "additionalProperties": false, 
+      "description": "SourceControlUser defines the identity of a user of source control", 
+      "properties": {
+        "email": {
+          "type": [
+            "string", 
+            "null"
+          ], 
+          "description": "email of the source control user"
+        }, 
+        "name": {
+          "type": [
+            "string", 
+            "null"
+          ], 
+          "description": "name of the source control user"
+        }
+      }
     }
   }
 }

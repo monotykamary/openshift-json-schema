@@ -31,12 +31,16 @@
       "type": "object", 
       "description": "The annotations to be updated to a deployment"
     }, 
-    "name": {
-      "type": [
-        "string", 
-        "null"
-      ], 
-      "description": "Required: This must match the Name of a deployment."
+    "rollbackTo": {
+      "additionalProperties": false, 
+      "description": "DEPRECATED.", 
+      "properties": {
+        "revision": {
+          "type": "integer", 
+          "description": "The revision to rollback to. If set to 0, rollback to the last revision.", 
+          "format": "int64"
+        }
+      }
     }, 
     "apiVersion": {
       "type": [
@@ -45,9 +49,12 @@
       ], 
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources"
     }, 
-    "rollbackTo": {
-      "description": "The config of this deployment rollback.", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.extensions.v1beta1.RollbackConfig"
+    "name": {
+      "type": [
+        "string", 
+        "null"
+      ], 
+      "description": "Required: This must match the Name of a deployment."
     }
   }
 }

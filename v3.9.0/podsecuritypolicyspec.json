@@ -15,7 +15,17 @@
     }, 
     "allowedHostPaths": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.extensions.v1beta1.AllowedHostPath"
+        "additionalProperties": false, 
+        "description": "defines the host volume conditions that will be enabled by a policy for pods to use. It requires the path prefix to be defined.", 
+        "properties": {
+          "pathPrefix": {
+            "type": [
+              "string", 
+              "null"
+            ], 
+            "description": "is the path prefix that the host volume must match. It does not support `*`. Trailing slashes are trimmed when validating the path prefix with a host path.\n\nExamples: `/foo` would allow `/foo`, `/foo/` and `/foo/bar` `/foo` would not allow `/food` or `/etc/foo`"
+          }
+        }
       }, 
       "type": [
         "array", 
@@ -38,7 +48,17 @@
     }, 
     "allowedFlexVolumes": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.extensions.v1beta1.AllowedFlexVolume"
+        "additionalProperties": false, 
+        "required": [
+          "driver"
+        ], 
+        "description": "AllowedFlexVolume represents a single Flexvolume that is allowed to be used.", 
+        "properties": {
+          "driver": {
+            "type": "string", 
+            "description": "Driver is the name of the Flexvolume driver."
+          }
+        }
       }, 
       "type": [
         "array", 
@@ -47,8 +67,44 @@
       "description": "AllowedFlexVolumes is a whitelist of allowed Flexvolumes.  Empty or nil indicates that all Flexvolumes may be used.  This parameter is effective only when the usage of the Flexvolumes is allowed in the \"Volumes\" field."
     }, 
     "fsGroup": {
-      "description": "FSGroup is the strategy that will dictate what fs group is used by the SecurityContext.", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.extensions.v1beta1.FSGroupStrategyOptions"
+      "additionalProperties": false, 
+      "description": "FSGroupStrategyOptions defines the strategy type and options used to create the strategy.", 
+      "properties": {
+        "ranges": {
+          "items": {
+            "additionalProperties": false, 
+            "required": [
+              "min", 
+              "max"
+            ], 
+            "description": "ID Range provides a min/max of an allowed range of IDs.", 
+            "properties": {
+              "max": {
+                "type": "integer", 
+                "description": "Max is the end of the range, inclusive.", 
+                "format": "int64"
+              }, 
+              "min": {
+                "type": "integer", 
+                "description": "Min is the start of the range, inclusive.", 
+                "format": "int64"
+              }
+            }
+          }, 
+          "type": [
+            "array", 
+            "null"
+          ], 
+          "description": "Ranges are the allowed ranges of fs groups.  If you would like to force a single fs group then supply a single range with the same start and end."
+        }, 
+        "rule": {
+          "type": [
+            "string", 
+            "null"
+          ], 
+          "description": "Rule is the strategy that will dictate what FSGroup is used in the SecurityContext."
+        }
+      }
     }, 
     "hostNetwork": {
       "type": "boolean", 
@@ -59,16 +115,131 @@
       "description": "AllowPrivilegeEscalation determines if a pod can request to allow privilege escalation. If unspecified, defaults to true."
     }, 
     "runAsUser": {
-      "description": "runAsUser is the strategy that will dictate the allowable RunAsUser values that may be set.", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.extensions.v1beta1.RunAsUserStrategyOptions"
+      "additionalProperties": false, 
+      "required": [
+        "rule"
+      ], 
+      "description": "Run A sUser Strategy Options defines the strategy type and any options used to create the strategy.", 
+      "properties": {
+        "ranges": {
+          "items": {
+            "additionalProperties": false, 
+            "required": [
+              "min", 
+              "max"
+            ], 
+            "description": "ID Range provides a min/max of an allowed range of IDs.", 
+            "properties": {
+              "max": {
+                "type": "integer", 
+                "description": "Max is the end of the range, inclusive.", 
+                "format": "int64"
+              }, 
+              "min": {
+                "type": "integer", 
+                "description": "Min is the start of the range, inclusive.", 
+                "format": "int64"
+              }
+            }
+          }, 
+          "type": [
+            "array", 
+            "null"
+          ], 
+          "description": "Ranges are the allowed ranges of uids that may be used."
+        }, 
+        "rule": {
+          "type": "string", 
+          "description": "Rule is the strategy that will dictate the allowable RunAsUser values that may be set."
+        }
+      }
     }, 
     "supplementalGroups": {
-      "description": "SupplementalGroups is the strategy that will dictate what supplemental groups are used by the SecurityContext.", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.extensions.v1beta1.SupplementalGroupsStrategyOptions"
+      "additionalProperties": false, 
+      "description": "SupplementalGroupsStrategyOptions defines the strategy type and options used to create the strategy.", 
+      "properties": {
+        "ranges": {
+          "items": {
+            "additionalProperties": false, 
+            "required": [
+              "min", 
+              "max"
+            ], 
+            "description": "ID Range provides a min/max of an allowed range of IDs.", 
+            "properties": {
+              "max": {
+                "type": "integer", 
+                "description": "Max is the end of the range, inclusive.", 
+                "format": "int64"
+              }, 
+              "min": {
+                "type": "integer", 
+                "description": "Min is the start of the range, inclusive.", 
+                "format": "int64"
+              }
+            }
+          }, 
+          "type": [
+            "array", 
+            "null"
+          ], 
+          "description": "Ranges are the allowed ranges of supplemental groups.  If you would like to force a single supplemental group then supply a single range with the same start and end."
+        }, 
+        "rule": {
+          "type": [
+            "string", 
+            "null"
+          ], 
+          "description": "Rule is the strategy that will dictate what supplemental groups is used in the SecurityContext."
+        }
+      }
     }, 
     "seLinux": {
-      "description": "seLinux is the strategy that will dictate the allowable labels that may be set.", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.extensions.v1beta1.SELinuxStrategyOptions"
+      "additionalProperties": false, 
+      "required": [
+        "rule"
+      ], 
+      "description": "SELinux  Strategy Options defines the strategy type and any options used to create the strategy.", 
+      "properties": {
+        "seLinuxOptions": {
+          "additionalProperties": false, 
+          "description": "SELinuxOptions are the labels to be applied to the container", 
+          "properties": {
+            "type": {
+              "type": [
+                "string", 
+                "null"
+              ], 
+              "description": "Type is a SELinux type label that applies to the container."
+            }, 
+            "role": {
+              "type": [
+                "string", 
+                "null"
+              ], 
+              "description": "Role is a SELinux role label that applies to the container."
+            }, 
+            "user": {
+              "type": [
+                "string", 
+                "null"
+              ], 
+              "description": "User is a SELinux user label that applies to the container."
+            }, 
+            "level": {
+              "type": [
+                "string", 
+                "null"
+              ], 
+              "description": "Level is SELinux level label that applies to the container."
+            }
+          }
+        }, 
+        "rule": {
+          "type": "string", 
+          "description": "type is the strategy that will dictate the allowable labels that may be set."
+        }
+      }
     }, 
     "volumes": {
       "items": {
@@ -119,7 +290,24 @@
     }, 
     "hostPorts": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.extensions.v1beta1.HostPortRange"
+        "additionalProperties": false, 
+        "required": [
+          "min", 
+          "max"
+        ], 
+        "description": "Host Port Range defines a range of host ports that will be enabled by a policy for pods to use.  It requires both the start and end to be defined.", 
+        "properties": {
+          "max": {
+            "type": "integer", 
+            "description": "max is the end of the range, inclusive.", 
+            "format": "int32"
+          }, 
+          "min": {
+            "type": "integer", 
+            "description": "min is the start of the range, inclusive.", 
+            "format": "int32"
+          }
+        }
       }, 
       "type": [
         "array", 

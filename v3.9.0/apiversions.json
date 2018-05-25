@@ -16,7 +16,22 @@
   "properties": {
     "serverAddressByClientCIDRs": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ServerAddressByClientCIDR"
+        "additionalProperties": false, 
+        "required": [
+          "clientCIDR", 
+          "serverAddress"
+        ], 
+        "description": "ServerAddressByClientCIDR helps the client to determine the server address that they should use, depending on the clientCIDR that they match.", 
+        "properties": {
+          "clientCIDR": {
+            "type": "string", 
+            "description": "The CIDR with which clients can match their IP to figure out the server address that they should use."
+          }, 
+          "serverAddress": {
+            "type": "string", 
+            "description": "Address of this server, suitable for a client that matches the above CIDR. This can be a hostname, hostname:port, IP or IP:port."
+          }
+        }
       }, 
       "type": [
         "array", 

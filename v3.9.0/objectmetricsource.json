@@ -9,12 +9,35 @@
   "description": "ObjectMetricSource indicates how to scale on a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).", 
   "properties": {
     "targetValue": {
-      "description": "targetValue is the target value of the metric (as a quantity).", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.api.resource.Quantity"
+      "type": [
+        "string", 
+        "null"
+      ]
     }, 
     "target": {
-      "description": "target is the described Kubernetes object.", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.autoscaling.v2beta1.CrossVersionObjectReference"
+      "additionalProperties": false, 
+      "required": [
+        "kind", 
+        "name"
+      ], 
+      "description": "CrossVersionObjectReference contains enough information to let you identify the referred resource.", 
+      "properties": {
+        "kind": {
+          "type": "string", 
+          "description": "Kind of the referent; More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds\""
+        }, 
+        "name": {
+          "type": "string", 
+          "description": "Name of the referent; More info: http://kubernetes.io/docs/user-guide/identifiers#names"
+        }, 
+        "apiVersion": {
+          "type": [
+            "string", 
+            "null"
+          ], 
+          "description": "API version of the referent"
+        }
+      }
     }, 
     "metricName": {
       "type": [

@@ -11,12 +11,38 @@
       "description": "An optional identifer to prepend to each key in the ConfigMap. Must be a C_IDENTIFIER."
     }, 
     "configMapRef": {
-      "description": "The ConfigMap to select from", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.ConfigMapEnvSource"
+      "additionalProperties": false, 
+      "description": "ConfigMapEnvSource selects a ConfigMap to populate the environment variables with.\n\nThe contents of the target ConfigMap's Data field will represent the key-value pairs as environment variables.", 
+      "properties": {
+        "optional": {
+          "type": "boolean", 
+          "description": "Specify whether the ConfigMap must be defined"
+        }, 
+        "name": {
+          "type": [
+            "string", 
+            "null"
+          ], 
+          "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names"
+        }
+      }
     }, 
     "secretRef": {
-      "description": "The Secret to select from", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.SecretEnvSource"
+      "additionalProperties": false, 
+      "description": "SecretEnvSource selects a Secret to populate the environment variables with.\n\nThe contents of the target Secret's Data field will represent the key-value pairs as environment variables.", 
+      "properties": {
+        "optional": {
+          "type": "boolean", 
+          "description": "Specify whether the Secret must be defined"
+        }, 
+        "name": {
+          "type": [
+            "string", 
+            "null"
+          ], 
+          "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names"
+        }
+      }
     }
   }
 }

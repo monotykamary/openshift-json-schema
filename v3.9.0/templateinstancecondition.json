@@ -32,8 +32,11 @@
       "description": "Message is a human readable description of the details of the last transition, complementing reason."
     }, 
     "lastTransitionTime": {
-      "description": "LastTransitionTime is the last time a condition status transitioned from one state to another.", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
+      "type": [
+        "string", 
+        "null"
+      ], 
+      "format": "date-time"
     }, 
     "reason": {
       "type": [

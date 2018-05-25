@@ -8,8 +8,10 @@
   "description": "PodsMetricStatus indicates the current value of a metric describing each pod in the current scale target (for example, transactions-processed-per-second).", 
   "properties": {
     "currentAverageValue": {
-      "description": "currentAverageValue is the current value of the average of the metric across all relevant pods (as a quantity)", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.api.resource.Quantity"
+      "type": [
+        "string", 
+        "null"
+      ]
     }, 
     "metricName": {
       "type": [

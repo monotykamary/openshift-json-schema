@@ -15,8 +15,11 @@
       "description": "Required. The taint value corresponding to the taint key."
     }, 
     "timeAdded": {
-      "description": "TimeAdded represents the time at which the taint was added. It is only written for NoExecute taints.", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
+      "type": [
+        "string", 
+        "null"
+      ], 
+      "format": "date-time"
     }, 
     "effect": {
       "type": [

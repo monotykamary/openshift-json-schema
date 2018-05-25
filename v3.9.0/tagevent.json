@@ -29,8 +29,11 @@
       "description": "DockerImageReference is the string that can be used to pull this image"
     }, 
     "created": {
-      "description": "Created holds the time the TagEvent was created", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
+      "type": [
+        "string", 
+        "null"
+      ], 
+      "format": "date-time"
     }
   }
 }

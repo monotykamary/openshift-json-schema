@@ -26,12 +26,18 @@
       "description": "(brief) reason from the last termination of the container"
     }, 
     "finishedAt": {
-      "description": "Time at which the container last terminated", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
+      "type": [
+        "string", 
+        "null"
+      ], 
+      "format": "date-time"
     }, 
     "startedAt": {
-      "description": "Time at which previous execution of the container started", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
+      "type": [
+        "string", 
+        "null"
+      ], 
+      "format": "date-time"
     }, 
     "message": {
       "type": [

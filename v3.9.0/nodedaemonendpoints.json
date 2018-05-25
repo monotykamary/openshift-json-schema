@@ -4,8 +4,18 @@
   "description": "NodeDaemonEndpoints lists ports opened by daemons running on the Node.", 
   "properties": {
     "kubeletEndpoint": {
-      "description": "Endpoint on which Kubelet is listening.", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.DaemonEndpoint"
+      "additionalProperties": false, 
+      "required": [
+        "Port"
+      ], 
+      "description": "DaemonEndpoint contains information about a single Daemon endpoint.", 
+      "properties": {
+        "Port": {
+          "type": "integer", 
+          "description": "Port number of the given endpoint.", 
+          "format": "int32"
+        }
+      }
     }
   }
 }

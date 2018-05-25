@@ -8,7 +8,38 @@
   "properties": {
     "egress": {
       "items": {
-        "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.network.v1.EgressNetworkPolicyRule"
+        "additionalProperties": false, 
+        "required": [
+          "type", 
+          "to"
+        ], 
+        "description": "EgressNetworkPolicyRule contains a single egress network policy rule", 
+        "properties": {
+          "to": {
+            "additionalProperties": false, 
+            "description": "EgressNetworkPolicyPeer specifies a target to apply egress network policy to", 
+            "properties": {
+              "cidrSelector": {
+                "type": [
+                  "string", 
+                  "null"
+                ], 
+                "description": "cidrSelector is the CIDR range to allow/deny traffic to. If this is set, dnsName must be unset"
+              }, 
+              "dnsName": {
+                "type": [
+                  "string", 
+                  "null"
+                ], 
+                "description": "dnsName is the domain name to allow/deny traffic to. If this is set, cidrSelector must be unset"
+              }
+            }
+          }, 
+          "type": {
+            "type": "string", 
+            "description": "type marks this as an \"Allow\" or \"Deny\" rule"
+          }
+        }
       }, 
       "type": [
         "array", 

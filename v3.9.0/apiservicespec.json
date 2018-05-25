@@ -17,8 +17,24 @@
       "description": "Group is the API group name this server hosts"
     }, 
     "service": {
-      "description": "Service is a reference to the service for this API server.  It must communicate on port 443 If the Service is nil, that means the handling for the API groupversion is handled locally on this server. The call will simply delegate to the normal handler chain to be fulfilled.", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.kube-aggregator.pkg.apis.apiregistration.v1beta1.ServiceReference"
+      "additionalProperties": false, 
+      "description": "ServiceReference holds a reference to Service.legacy.k8s.io", 
+      "properties": {
+        "namespace": {
+          "type": [
+            "string", 
+            "null"
+          ], 
+          "description": "Namespace is the namespace of the service"
+        }, 
+        "name": {
+          "type": [
+            "string", 
+            "null"
+          ], 
+          "description": "Name is the name of the service"
+        }
+      }
     }, 
     "version": {
       "type": [
