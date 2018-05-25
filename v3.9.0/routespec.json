@@ -12,10 +12,7 @@
       "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.route.v1.TLSConfig"
     }, 
     "wildcardPolicy": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Wildcard policy if any for the route. Currently only 'Subdomain' or 'None' is allowed."
     }, 
     "to": {
@@ -23,27 +20,18 @@
       "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.route.v1.RouteTargetReference"
     }, 
     "host": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "host is an alias/DNS that points to the service. Optional. If not specified a route name will typically be automatically chosen. Must follow DNS952 subdomain conventions."
     }, 
     "alternateBackends": {
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.route.v1.RouteTargetReference"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "alternateBackends allows up to 3 additional backends to be assigned to the route. Only the Service kind is allowed, and it will be defaulted to Service. Use the weight field in RouteTargetReference object to specify relative preference."
     }, 
     "path": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Path that the router watches for, to route traffic for to the service. Optional"
     }, 
     "port": {

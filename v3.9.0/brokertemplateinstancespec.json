@@ -13,15 +13,9 @@
     }, 
     "bindingIDs": {
       "items": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "bindingids is a list of 'binding_id's provided during successive bind calls to the template service broker."
     }, 
     "templateInstance": {

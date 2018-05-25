@@ -11,27 +11,18 @@
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.image.v1.TagEvent"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "Standard object's metadata."
     }, 
     "tag": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Tag is the tag for which the history is recorded"
     }, 
     "conditions": {
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.image.v1.TagEventCondition"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "Conditions is an array of conditions that apply to the tag event list."
     }
   }

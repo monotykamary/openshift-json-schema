@@ -19,34 +19,22 @@
   "type": "object", 
   "properties": {
     "dockerImageConfig": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "DockerImageConfig is a JSON blob that the runtime uses to set up the container. This is a part of manifest schema v2."
     }, 
     "dockerImageManifestMediaType": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "DockerImageManifestMediaType specifies the mediaType of manifest. This is a part of manifest schema v2."
     }, 
     "dockerImageMetadataVersion": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "DockerImageMetadataVersion conveys the version of the object, which if empty defaults to \"1.0\""
     }, 
     "signatures": {
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.image.v1.ImageSignature"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "Signatures holds all signatures of the image.", 
       "x-kubernetes-patch-strategy": "merge", 
       "x-kubernetes-patch-merge-key": "name"
@@ -55,31 +43,19 @@
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.image.v1.ImageLayer"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "DockerImageLayers represents the layers in the image. May not be set if the image does not define that data."
     }, 
     "dockerImageManifest": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "DockerImageManifest is the raw JSON of the manifest"
     }, 
     "kind": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds"
     }, 
     "apiVersion": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources"
     }, 
     "metadata": {
@@ -87,30 +63,21 @@
       "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta"
     }, 
     "dockerImageReference": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "DockerImageReference is the string that can be used to pull this image."
     }, 
     "dockerImageSignatures": {
       "items": {
-        "type": [
-          "string", 
-          "null"
-        ], 
+        "type": "string", 
         "format": "byte"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "DockerImageSignatures provides the signatures as opaque blobs. This is a part of manifest schema v1."
     }, 
     "dockerImageMetadata": {
       "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.runtime.RawExtension", 
-      "description": "DockerImageMetadata contains metadata about this image", 
-      "x-kubernetes-patch-strategy": "replace"
+      "x-kubernetes-patch-strategy": "replace", 
+      "description": "DockerImageMetadata contains metadata about this image"
     }
   }
 }

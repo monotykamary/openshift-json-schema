@@ -8,10 +8,7 @@
       "description": "allowEnv determines whether the webhook can set environment variables; can only be set to true for GenericWebHook."
     }, 
     "secret": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "secret used to validate requests. Deprecated: use SecretReference instead."
     }, 
     "secretReference": {

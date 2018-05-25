@@ -15,10 +15,7 @@
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.build.v1.ImageLabel"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "imageLabels define a list of labels that are applied to the resulting image. If there are multiple labels with the same name then the last one in the list is used."
     }
   }

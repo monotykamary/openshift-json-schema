@@ -20,10 +20,7 @@
   "type": "object", 
   "properties": {
     "kind": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds"
     }, 
     "netid": {
@@ -33,29 +30,17 @@
     }, 
     "egressIPs": {
       "items": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "EgressIPs is a list of reserved IPs that will be used as the source for external traffic coming from pods in this namespace. (If empty, external traffic will be masqueraded to Node IPs.)"
     }, 
     "apiVersion": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources"
     }, 
     "netname": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "NetName is the name of the network namespace. (This is the same as the object's name, but both fields must be set.)"
     }, 
     "metadata": {

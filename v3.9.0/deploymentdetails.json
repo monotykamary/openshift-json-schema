@@ -7,20 +7,14 @@
   "description": "DeploymentDetails captures information about the causes of a deployment.", 
   "properties": {
     "message": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Message is the user specified change message, if this deployment was triggered manually by the user"
     }, 
     "causes": {
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.apps.v1.DeploymentCause"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "Causes are extended data associated with all the causes for creating a new deployment"
     }
   }

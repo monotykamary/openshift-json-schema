@@ -4,27 +4,18 @@
   "description": "JenkinsPipelineBuildStrategy holds parameters specific to a Jenkins Pipeline build.", 
   "properties": {
     "jenkinsfilePath": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "JenkinsfilePath is the optional path of the Jenkinsfile that will be used to configure the pipeline relative to the root of the context (contextDir). If both JenkinsfilePath & Jenkinsfile are both not specified, this defaults to Jenkinsfile in the root of the specified contextDir."
     }, 
     "env": {
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.EnvVar"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "env contains additional environment variables you want to pass into a build pipeline."
     }, 
     "jenkinsfile": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Jenkinsfile defines the optional raw contents of a Jenkinsfile which defines a Jenkins pipeline build."
     }
   }

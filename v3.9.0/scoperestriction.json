@@ -5,15 +5,9 @@
   "properties": {
     "literals": {
       "items": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "ExactValues means the scope has to match a particular set of strings exactly"
     }, 
     "clusterRole": {

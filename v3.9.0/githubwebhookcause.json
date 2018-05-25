@@ -4,10 +4,7 @@
   "description": "GitHubWebHookCause has information about a GitHub webhook that triggered a build.", 
   "properties": {
     "secret": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "secret is the obfuscated webhook secret that triggered a build."
     }, 
     "revision": {

@@ -14,44 +14,26 @@
     "extra": {
       "additionalProperties": {
         "items": {
-          "type": [
-            "string", 
-            "null"
-          ]
+          "type": "string"
         }, 
-        "type": [
-          "array", 
-          "null"
-        ]
+        "type": "array"
       }, 
       "type": "object", 
       "description": "Extra corresponds to the user.Info.GetExtra() method from the authenticator.  Since that is input to the authorizer it needs a reflection here."
     }, 
     "user": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "User is the user you're testing for. If you specify \"User\" but not \"Groups\", then is it interpreted as \"What if User were not a member of any groups"
     }, 
     "groups": {
       "items": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "Groups is the groups you're testing for."
     }, 
     "uid": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "UID information about the requesting user."
     }
   }

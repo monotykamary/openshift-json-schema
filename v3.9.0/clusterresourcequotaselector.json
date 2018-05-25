@@ -13,10 +13,7 @@
     }, 
     "annotations": {
       "additionalProperties": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
       "type": "object", 
       "description": "AnnotationSelector is used to select projects by annotation."

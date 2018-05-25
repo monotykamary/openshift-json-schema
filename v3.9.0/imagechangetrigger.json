@@ -4,10 +4,7 @@
   "description": "ImageChangeTrigger allows builds to be triggered when an ImageStream changes", 
   "properties": {
     "lastTriggeredImageID": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "lastTriggeredImageID is used internally by the ImageChangeController to save last used image ID for build"
     }, 
     "from": {

@@ -4,17 +4,11 @@
   "description": "SourceControlUser defines the identity of a user of source control", 
   "properties": {
     "email": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "email of the source control user"
     }, 
     "name": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "name of the source control user"
     }
   }

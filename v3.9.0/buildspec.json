@@ -12,25 +12,16 @@
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.build.v1.BuildTriggerCause"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "triggeredBy describes which triggers started the most recent update to the build configuration and contains information about those triggers."
     }, 
     "serviceAccount": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "serviceAccount is the name of the ServiceAccount to use to run the pod created by this build. The pod will be allowed to use secrets referenced by the ServiceAccount"
     }, 
     "nodeSelector": {
       "additionalProperties": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
       "type": "object", 
       "description": "nodeSelector is a selector which must be true for the build pod to fit on a node If nil, it can be overridden by default build nodeselector values for the cluster. If set to an empty map or a map with any values, default build nodeselector values are ignored."

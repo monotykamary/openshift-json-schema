@@ -20,39 +20,27 @@
   "type": "object", 
   "properties": {
     "kind": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds"
     }, 
     "updatedAnnotations": {
       "additionalProperties": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
       "type": "object", 
       "description": "UpdatedAnnotations is a set of new annotations that will be added in the deployment config."
     }, 
-    "name": {
-      "type": [
-        "string", 
-        "null"
-      ], 
-      "description": "Name of the deployment config that will be rolled back."
-    }, 
-    "apiVersion": {
-      "type": [
-        "string", 
-        "null"
-      ], 
-      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources"
-    }, 
     "spec": {
       "description": "Spec defines the options to rollback generation.", 
       "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.apps.v1.DeploymentConfigRollbackSpec"
+    }, 
+    "apiVersion": {
+      "type": "string", 
+      "description": "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources"
+    }, 
+    "name": {
+      "type": "string", 
+      "description": "Name of the deployment config that will be rolled back."
     }
   }
 }

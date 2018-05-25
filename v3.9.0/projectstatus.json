@@ -4,10 +4,7 @@
   "description": "ProjectStatus is information about the current status of a Project", 
   "properties": {
     "phase": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Phase is the current lifecycle phase of the project"
     }
   }

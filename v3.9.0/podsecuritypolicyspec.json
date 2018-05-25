@@ -17,33 +17,21 @@
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.extensions.v1beta1.AllowedHostPath"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "is a white list of allowed host paths. Empty indicates that all host paths may be used."
     }, 
     "allowedCapabilities": {
       "items": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "AllowedCapabilities is a list of capabilities that can be requested to add to the container. Capabilities in this field may be added at the pod author's discretion. You must not list a capability in both AllowedCapabilities and RequiredDropCapabilities."
     }, 
     "allowedFlexVolumes": {
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.extensions.v1beta1.AllowedFlexVolume"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "AllowedFlexVolumes is a whitelist of allowed Flexvolumes.  Empty or nil indicates that all Flexvolumes may be used.  This parameter is effective only when the usage of the Flexvolumes is allowed in the \"Volumes\" field."
     }, 
     "fsGroup": {
@@ -72,15 +60,9 @@
     }, 
     "volumes": {
       "items": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "volumes is a white list of allowed volume plugins.  Empty indicates that all plugins may be used."
     }, 
     "hostIPC": {
@@ -89,15 +71,9 @@
     }, 
     "defaultAddCapabilities": {
       "items": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "DefaultAddCapabilities is the default set of capabilities that will be added to the container unless the pod spec specifically drops the capability.  You may not list a capability in both DefaultAddCapabilities and RequiredDropCapabilities. Capabilities added here are implicitly allowed, and need not be included in the AllowedCapabilities list."
     }, 
     "privileged": {
@@ -106,25 +82,16 @@
     }, 
     "requiredDropCapabilities": {
       "items": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "RequiredDropCapabilities are the capabilities that will be dropped from the container.  These are required to be dropped and cannot be added."
     }, 
     "hostPorts": {
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.extensions.v1beta1.HostPortRange"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "hostPorts determines which host port ranges are allowed to be exposed."
     }, 
     "hostPID": {

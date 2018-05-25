@@ -4891,14 +4891,8 @@
       }
     }, 
     "io.k8s.apimachinery.pkg.util.intstr.IntOrString": {
-      "oneOf": [
-        {
-          "type": "string"
-        }, 
-        {
-          "type": "integer"
-        }
-      ]
+      "type": "string", 
+      "format": "int-or-string"
     }, 
     "io.k8s.api.authorization.v1.ResourceAttributes": {
       "description": "ResourceAttributes includes the authorization attributes available for resource requests to the Authorizer interface", 
@@ -8107,14 +8101,7 @@
       }
     }, 
     "io.k8s.apimachinery.pkg.api.resource.Quantity": {
-      "oneOf": [
-        {
-          "type": "string"
-        }, 
-        {
-          "type": "integer"
-        }
-      ]
+      "type": "string"
     }, 
     "io.k8s.api.apps.v1beta1.StatefulSetStatus": {
       "required": [

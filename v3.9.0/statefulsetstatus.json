@@ -7,10 +7,7 @@
   "description": "StatefulSetStatus represents the current state of a StatefulSet.", 
   "properties": {
     "updateRevision": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "updateRevision, if not empty, indicates the version of the StatefulSet used to generate Pods in the sequence [replicas-updatedReplicas,replicas)"
     }, 
     "collisionCount": {
@@ -39,10 +36,7 @@
       "format": "int32"
     }, 
     "currentRevision": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "currentRevision, if not empty, indicates the version of the StatefulSet used to generate Pods in the sequence [0,currentReplicas)."
     }, 
     "readyReplicas": {
@@ -54,10 +48,7 @@
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.apps.v1.StatefulSetCondition"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "Represents the latest available observations of a statefulset's current state.", 
       "x-kubernetes-patch-strategy": "merge", 
       "x-kubernetes-patch-merge-key": "type"

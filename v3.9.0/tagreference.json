@@ -15,10 +15,7 @@
       "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.ObjectReference"
     }, 
     "name": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Name of the tag"
     }, 
     "reference": {
@@ -36,10 +33,7 @@
     }, 
     "annotations": {
       "additionalProperties": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
       "type": "object", 
       "description": "Optional; if specified, annotations that are applied to images retrieved via ImageStreamTags."

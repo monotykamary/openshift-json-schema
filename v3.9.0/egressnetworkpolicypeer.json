@@ -4,17 +4,11 @@
   "description": "EgressNetworkPolicyPeer specifies a target to apply egress network policy to", 
   "properties": {
     "cidrSelector": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "cidrSelector is the CIDR range to allow/deny traffic to. If this is set, dnsName must be unset"
     }, 
     "dnsName": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "dnsName is the domain name to allow/deny traffic to. If this is set, cidrSelector must be unset"
     }
   }

@@ -7,10 +7,7 @@
   "description": "LifecycleHook defines a specific deployment lifecycle action. Only one type of action may be specified at any time.", 
   "properties": {
     "failurePolicy": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "FailurePolicy specifies what action to take if the hook fails."
     }, 
     "execNewPod": {
@@ -21,10 +18,7 @@
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.apps.v1.TagImageHook"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "TagImages instructs the deployer to tag the current image referenced under a container onto an image stream tag."
     }
   }

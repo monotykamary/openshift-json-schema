@@ -4,10 +4,7 @@
   "description": "PersistentVolumeSpec is the specification of a persistent volume.", 
   "properties": {
     "volumeMode": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "volumeMode defines if a volume is intended to be used with a formatted filesystem or to remain in raw block state. Value of Filesystem is implied when not included in spec. This is an alpha feature and may change in the future."
     }, 
     "portworxVolume": {
@@ -20,15 +17,9 @@
     }, 
     "mountOptions": {
       "items": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "A list of mount options, e.g. [\"ro\", \"soft\"]. Not validated - mount will simply fail if one is invalid. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options"
     }, 
     "flocker": {
@@ -63,10 +54,7 @@
       "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.PhotonPersistentDiskVolumeSource"
     }, 
     "persistentVolumeReclaimPolicy": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "What happens to a persistent volume when released from its claim. Valid options are Retain (default) and Recycle. Recycling must be supported by the volume plugin underlying this persistent volume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming"
     }, 
     "azureDisk": {
@@ -79,15 +67,9 @@
     }, 
     "accessModes": {
       "items": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "AccessModes contains all ways the volume can be mounted. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes"
     }, 
     "claimRef": {
@@ -103,10 +85,7 @@
       "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.CSIPersistentVolumeSource"
     }, 
     "storageClassName": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Name of StorageClass to which this persistent volume belongs. Empty value means that this volume does not belong to any StorageClass."
     }, 
     "rbd": {

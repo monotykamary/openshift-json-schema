@@ -7,10 +7,7 @@
   "description": "DeploymentCause captures information about a particular cause of a deployment.", 
   "properties": {
     "type": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Type of the trigger that resulted in the creation of a new deployment"
     }, 
     "imageTrigger": {

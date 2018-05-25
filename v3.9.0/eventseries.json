@@ -9,10 +9,7 @@
       "format": "int32"
     }, 
     "state": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "State of this Series: Ongoing or Finished"
     }, 
     "lastObservedTime": {

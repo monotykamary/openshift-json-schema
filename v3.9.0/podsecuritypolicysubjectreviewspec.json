@@ -12,22 +12,13 @@
     }, 
     "groups": {
       "items": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "groups is the groups you're testing for."
     }, 
     "user": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "user is the user you're testing for. If you specify \"user\" but not \"group\", then is it interpreted as \"What if user were not a member of any groups. If user and groups are empty, then the check is performed using *only* the serviceAccountName in the template."
     }
   }

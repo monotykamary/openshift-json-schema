@@ -11,24 +11,15 @@
   "description": "TemplateInstanceCondition contains condition information for a TemplateInstance.", 
   "properties": {
     "status": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Status of the condition, one of True, False or Unknown."
     }, 
     "type": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Type of the condition, currently Ready or InstantiateFailure."
     }, 
     "message": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Message is a human readable description of the details of the last transition, complementing reason."
     }, 
     "lastTransitionTime": {
@@ -36,10 +27,7 @@
       "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Time"
     }, 
     "reason": {
-      "type": [
-        "string", 
-        "null"
-      ], 
+      "type": "string", 
       "description": "Reason is a brief machine readable explanation for the condition's last transition."
     }
   }

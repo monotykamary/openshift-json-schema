@@ -7,10 +7,7 @@
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.apps.v1.DeploymentTriggerPolicy"
       }, 
-      "type": [
-        "array", 
-        "null"
-      ], 
+      "type": "array", 
       "description": "Triggers determine how updates to a DeploymentConfig result in new deployments. If no triggers are defined, a new deployment can only occur as a result of an explicit client update to the DeploymentConfig with a new LatestVersion. If null, defaults to having a config change trigger."
     }, 
     "replicas": {
@@ -41,10 +38,7 @@
     }, 
     "selector": {
       "additionalProperties": {
-        "type": [
-          "string", 
-          "null"
-        ]
+        "type": "string"
       }, 
       "type": "object", 
       "description": "Selector is a label query over pods that should match the Replicas count."
