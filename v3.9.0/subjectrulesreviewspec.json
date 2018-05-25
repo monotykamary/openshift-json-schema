@@ -10,20 +10,35 @@
   "properties": {
     "scopes": {
       "items": {
-        "type": "string"
+        "type": [
+          "string", 
+          "null"
+        ]
       }, 
-      "type": "array", 
+      "type": [
+        "array", 
+        "null"
+      ], 
       "description": "Scopes to use for the evaluation.  Empty means \"use the unscoped (full) permissions of the user/groups\"."
     }, 
     "user": {
-      "type": "string", 
+      "type": [
+        "string", 
+        "null"
+      ], 
       "description": "User is optional.  At least one of User and Groups must be specified."
     }, 
     "groups": {
       "items": {
-        "type": "string"
+        "type": [
+          "string", 
+          "null"
+        ]
       }, 
-      "type": "array", 
+      "type": [
+        "array", 
+        "null"
+      ], 
       "description": "Groups is optional.  Groups is the list of groups to which the User belongs.  At least one of User and Groups must be specified."
     }
   }

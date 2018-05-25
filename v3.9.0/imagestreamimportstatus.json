@@ -7,7 +7,10 @@
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.image.v1.ImageImportStatus"
       }, 
-      "type": "array", 
+      "type": [
+        "array", 
+        "null"
+      ], 
       "description": "Images is set with the result of importing spec.images"
     }, 
     "import": {

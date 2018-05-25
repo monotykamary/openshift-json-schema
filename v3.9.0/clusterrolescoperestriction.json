@@ -10,9 +10,15 @@
   "properties": {
     "roleNames": {
       "items": {
-        "type": "string"
+        "type": [
+          "string", 
+          "null"
+        ]
       }, 
-      "type": "array", 
+      "type": [
+        "array", 
+        "null"
+      ], 
       "description": "RoleNames is the list of cluster roles that can referenced.  * means anything"
     }, 
     "allowEscalation": {
@@ -21,9 +27,15 @@
     }, 
     "namespaces": {
       "items": {
-        "type": "string"
+        "type": [
+          "string", 
+          "null"
+        ]
       }, 
-      "type": "array", 
+      "type": [
+        "array", 
+        "null"
+      ], 
       "description": "Namespaces is the list of namespaces that can be referenced.  * means any of them (including *)"
     }
   }

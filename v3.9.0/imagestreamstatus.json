@@ -7,18 +7,27 @@
   "description": "ImageStreamStatus contains information about the state of this image stream.", 
   "properties": {
     "publicDockerImageRepository": {
-      "type": "string", 
+      "type": [
+        "string", 
+        "null"
+      ], 
       "description": "PublicDockerImageRepository represents the public location from where the image can be pulled outside the cluster. This field may be empty if the administrator has not exposed the integrated registry externally."
     }, 
     "dockerImageRepository": {
-      "type": "string", 
+      "type": [
+        "string", 
+        "null"
+      ], 
       "description": "DockerImageRepository represents the effective location this stream may be accessed at. May be empty until the server determines where the repository is located"
     }, 
     "tags": {
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.image.v1.NamedTagEventList"
       }, 
-      "type": "array", 
+      "type": [
+        "array", 
+        "null"
+      ], 
       "description": "Tags are a historical record of images associated with each tag. The first entry in the TagEvent array is the currently tagged image.", 
       "x-kubernetes-patch-strategy": "merge", 
       "x-kubernetes-patch-merge-key": "tag"

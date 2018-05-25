@@ -10,7 +10,10 @@
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.network.v1.EgressNetworkPolicyRule"
       }, 
-      "type": "array", 
+      "type": [
+        "array", 
+        "null"
+      ], 
       "description": "egress contains the list of egress policy rules"
     }
   }

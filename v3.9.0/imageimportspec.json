@@ -14,10 +14,6 @@
       "description": "ReferencePolicy defines how other components should consume the image", 
       "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.image.v1.TagReferencePolicy"
     }, 
-    "from": {
-      "description": "From is the source of an image to import; only kind DockerImage is allowed", 
-      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.ObjectReference"
-    }, 
     "includeManifest": {
       "type": "boolean", 
       "description": "IncludeManifest determines if the manifest for each image is returned in the response"
@@ -25,6 +21,10 @@
     "to": {
       "description": "To is a tag in the current image stream to assign the imported image to, if name is not specified the default tag from from.name will be used", 
       "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.LocalObjectReference"
+    }, 
+    "from": {
+      "description": "From is the source of an image to import; only kind DockerImage is allowed", 
+      "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.ObjectReference"
     }
   }
 }

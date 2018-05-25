@@ -12,7 +12,10 @@
       "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/com.github.openshift.api.network.v1.EgressNetworkPolicyPeer"
     }, 
     "type": {
-      "type": "string", 
+      "type": [
+        "string", 
+        "null"
+      ], 
       "description": "type marks this as an \"Allow\" or \"Deny\" rule"
     }
   }

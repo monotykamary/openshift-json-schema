@@ -13,7 +13,10 @@
       "format": "int64"
     }, 
     "CIDR": {
-      "type": "string", 
+      "type": [
+        "string", 
+        "null"
+      ], 
       "description": "CIDR defines the total range of a cluster networks address space."
     }
   }

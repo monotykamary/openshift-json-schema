@@ -22,11 +22,17 @@
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.api.core.v1.EnvVar"
       }, 
-      "type": "array", 
+      "type": [
+        "array", 
+        "null"
+      ], 
       "description": "env contains additional environment variables you want to pass into a builder container."
     }, 
     "scripts": {
-      "type": "string", 
+      "type": [
+        "string", 
+        "null"
+      ], 
       "description": "scripts is the location of Source scripts"
     }, 
     "forcePull": {

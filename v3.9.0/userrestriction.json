@@ -12,21 +12,36 @@
       "items": {
         "$ref": "https://raw.githubusercontent.com/monotykamary/openshift-json-schema/master/v3.9.0/_definitions.json#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector"
       }, 
-      "type": "array", 
+      "type": [
+        "array", 
+        "null"
+      ], 
       "description": "Selectors specifies a list of label selectors over user labels."
     }, 
     "users": {
       "items": {
-        "type": "string"
+        "type": [
+          "string", 
+          "null"
+        ]
       }, 
-      "type": "array", 
+      "type": [
+        "array", 
+        "null"
+      ], 
       "description": "Users specifies a list of literal user names."
     }, 
     "groups": {
       "items": {
-        "type": "string"
+        "type": [
+          "string", 
+          "null"
+        ]
       }, 
-      "type": "array", 
+      "type": [
+        "array", 
+        "null"
+      ], 
       "description": "Groups specifies a list of literal group names."
     }
   }
