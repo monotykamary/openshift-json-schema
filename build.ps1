@@ -5,7 +5,7 @@
 #   X.Y.Z-standalone - de-referenced schemas, more useful as standalone documents
 #   X.Y.Z-local - relative references, useful to avoid the network dependency
 
-$repo="garethr/openshift-json-schema"
+$repo="monotykamary/openshift-json-schema"
 
 $arr = @("master",
          "v3.9.0",
